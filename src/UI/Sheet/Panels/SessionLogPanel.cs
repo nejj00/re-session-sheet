@@ -94,15 +94,25 @@ public partial class SessionLogPanel : FramedPanel
 		_notesEdit.Text = "";
 	}
 
-	private static Control BuildEntryRow(SessionLogEntry entry)
+	private Control BuildEntryRow(SessionLogEntry entry)
 	{
 		var box = new VBoxContainer();
+
+		var headerBox = new HBoxContainer();
+		headerBox.AddThemeConstantOverride("separation", 8);
+
 		string played = entry.PlayedOnUtc.HasValue ? entry.PlayedOnUtc.Value.ToLocalTime().ToString("yyyy-MM-dd") : "";
 		var header = new Label
 		{
 			Text = $"Session {entry.SessionNumber} — +{entry.XpAwarded} XP (Total: {entry.RunningXpTotal}){(played != "" ? "  —  " + played : "")}",
 		};
-		box.AddChild(header);
+		headerBox.AddChild(header);
+
+		var remove = new Button { Text = "Remove" };
+		remove.Pressed += () => OnRemoveEntryPressed(entry);
+		headerBox.AddChild(remove);
+
+		box.AddChild(headerBox);
 
 		if (!string.IsNullOrWhiteSpace(entry.Notes))
 		{
@@ -130,6 +140,16 @@ public partial class SessionLogPanel : FramedPanel
 
 		Sheet.SessionLog.Add(entry);
 		Sheet.Xp.Available += xpAwarded;
+
+		RefreshEntries();
+		GameState.Instance.NotifyXpChanged();
+		GameState.Instance.NotifyCharacterEdited();
+	}
+
+	private void OnRemoveEntryPressed(SessionLogEntry entry)
+	{
+		Sheet.SessionLog.Remove(entry);
+		Sheet.Xp.Available -= entry.XpAwarded;
 
 		RefreshEntries();
 		GameState.Instance.NotifyXpChanged();
