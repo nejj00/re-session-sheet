@@ -1,0 +1,94 @@
+using Godot;
+using RESessionSheet.App;
+using RESessionSheet.Domain.Model;
+
+namespace RESessionSheet.UI.RosterScreen;
+
+public partial class RosterScreen : Control
+{
+	[Signal]
+	public delegate void CharacterOpenedEventHandler();
+
+	private ItemList _list = null!;
+	private LineEdit _nameInput = null!;
+	private Label _statusLabel = null!;
+	private List<CharacterFile> _roster = new();
+
+	public override void _Ready()
+	{
+		_list = GetNode<ItemList>("%RosterList");
+		_nameInput = GetNode<LineEdit>("%NameInput");
+		_statusLabel = GetNode<Label>("%StatusLabel");
+
+		GetNode<Button>("%NewButton").Pressed += OnNewPressed;
+		GetNode<Button>("%OpenButton").Pressed += OnOpenPressed;
+		GetNode<Button>("%DeleteButton").Pressed += OnDeletePressed;
+
+		RefreshRoster();
+	}
+
+	private void RefreshRoster()
+	{
+		_roster = GameState.Instance.ListRoster()
+			.OrderByDescending(c => c.LastModifiedUtc)
+			.ToList();
+
+		_list.Clear();
+		foreach (var character in _roster)
+		{
+			string label = $"{character.Sheet.Name}   —   last played {character.LastModifiedUtc:yyyy-MM-dd HH:mm}";
+			_list.AddItem(label);
+		}
+	}
+
+	private void OnNewPressed()
+	{
+		string name = _nameInput.Text.Trim();
+		if (string.IsNullOrEmpty(name))
+		{
+			_statusLabel.Text = "Enter a character name first.";
+			return;
+		}
+
+		var file = GameState.Instance.CreateCharacter(name);
+		_nameInput.Text = "";
+		_statusLabel.Text = $"Created \"{file.Sheet.Name}\".";
+		RefreshRoster();
+	}
+
+	private void OnOpenPressed()
+	{
+		int selected = GetSelectedIndex();
+		if (selected < 0)
+		{
+			_statusLabel.Text = "Select a character first.";
+			return;
+		}
+
+		var character = _roster[selected];
+		GameState.Instance.LoadCharacter(character.Id);
+		_statusLabel.Text = $"Loaded \"{character.Sheet.Name}\".";
+		EmitSignal(SignalName.CharacterOpened);
+	}
+
+	private void OnDeletePressed()
+	{
+		int selected = GetSelectedIndex();
+		if (selected < 0)
+		{
+			_statusLabel.Text = "Select a character first.";
+			return;
+		}
+
+		var character = _roster[selected];
+		GameState.Instance.DeleteCharacter(character.Id);
+		_statusLabel.Text = $"Deleted \"{character.Sheet.Name}\".";
+		RefreshRoster();
+	}
+
+	private int GetSelectedIndex()
+	{
+		var selected = _list.GetSelectedItems();
+		return selected.Length > 0 ? selected[0] : -1;
+	}
+}

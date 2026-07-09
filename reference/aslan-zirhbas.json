@@ -1,0 +1,1161 @@
+{
+  "char-name": "Aslan Zırhbaş",
+  "char-age": "",
+  "char-birth": "",
+  "char-gender": "",
+  "char-weight": "",
+  "char-height": "",
+  "char-eye": "",
+  "char-hair": "",
+  "char-skin": "",
+  "char-demeanor": "",
+  "char-rank": "",
+  "char-first-team": "",
+  "current-strain": "0",
+  "temp-status-textarea": "",
+  "inventory-textarea": "",
+  "exp-total": "335",
+  "exp-spent": "334",
+  "exp-available": "1",
+  "activityLog": "[09:47:26 PM] Character sheet loaded.\n[09:47:41 PM] Available XP manually set to 3.\n[09:47:41 PM] Available XP manually set to 33.\n[09:47:41 PM] Available XP manually set to 335.\n[09:47:45 PM] Upgraded Intelligence to Level 4 for 50 points.\n[09:48:02 PM] Upgraded Manipulation to Level 1 for 5 points.\n[09:48:26 PM] Upgraded Strength to Level 3 for 30 points.\n[09:48:27 PM] Upgraded Dexterity to Level 3 for 30 points.\n[09:48:29 PM] Upgraded Wits to Level 3 for 30 points.\n[09:48:30 PM] Upgraded Stamina to Level 2 for 15 points.\n[09:48:32 PM] Upgraded Charisma to Level 2 for 15 points.\n[09:48:35 PM] Upgraded Appearance to Level 2 for 15 points.\n[09:48:36 PM] Upgraded Perception to Level 2 for 15 points.\n[09:50:59 PM] Upgraded Medicine to Level 4 for 30 points.\n[09:51:08 PM] Upgraded Stealth to Level 3 for 18 points.\n[09:51:17 PM] Upgraded Athletics to Level 3 for 18 points.\n[09:53:10 PM] Upgraded Investigation to Level 3 for 18 points.\n[09:53:26 PM] Upgraded Survival to Level 2 for 9 points.\n[09:53:47 PM] Upgraded Firearms to Level 2 for 9 points.\n[09:55:29 PM] Upgraded Melee to Level 2 for 9 points.\n[09:56:43 PM] Upgraded Brawl to Level 1 for 3 points.\n[09:57:37 PM] Upgraded Repair to Level 1 for 3 points.\n[09:58:09 PM] Upgraded Dodge to Level 1 for 3 points.\n[09:59:36 PM] Upgraded Melee to Level 3 for 9 points.\n",
+  "ability-text-0": "",
+  "ability-text-1": "",
+  "ability-text-2": "",
+  "ability-text-3": "",
+  "ability-text-4": "",
+  "ability-text-5": "",
+  "ability-text-6": "",
+  "ability-text-7": "",
+  "ability-text-8": "",
+  "ability-text-9": "",
+  "ability-text-10": "",
+  "ability-text-11": "",
+  "ability-text-12": "",
+  "ability-text-13": "",
+  "ability-text-14": "",
+  "ability-text-15": "",
+  "ability-text-16": "",
+  "ability-text-17": "",
+  "ability-text-18": "",
+  "ability-text-19": "",
+  "ability-text-20": "",
+  "ability-text-21": "",
+  "ability-text-22": "",
+  "ability-text-23": "",
+  "ability-text-24": "",
+  "ability-text-25": "",
+  "ability-text-26": "",
+  "ability-text-27": "",
+  "ability-text-28": "",
+  "ability-text-29": "",
+  "merits-sub-section-text": [
+    "",
+    "",
+    ""
+  ],
+  "flaws-sub-section-text": [
+    "",
+    "",
+    ""
+  ],
+  "weapon-field-0": "",
+  "weapon-field-1": "",
+  "weapon-field-2": "",
+  "weapon-field-3": "",
+  "weapon-field-4": "",
+  "weapon-field-5": "",
+  "weapon-field-6": "",
+  "weapon-field-7": "",
+  "weapon-field-8": "",
+  "weapon-field-9": "",
+  "weapon-field-10": "",
+  "weapon-field-11": "",
+  "weapon-field-12": "",
+  "weapon-field-13": "",
+  "weapon-field-14": "",
+  "weapon-field-15": "",
+  "weapon-field-16": "",
+  "weapon-field-17": "",
+  "weapon-field-18": "",
+  "weapon-field-19": "",
+  "armor-field-0": "",
+  "armor-field-1": "",
+  "armor-field-2": "",
+  "armor-field-3": "",
+  "armor-field-4": "",
+  "wound-note-0": "",
+  "wound-note-1": "",
+  "wound-note-2": "",
+  "wound-note-3": "",
+  "wound-note-4": "",
+  "wound-note-5": "",
+  "wound-note-6": "",
+  "checkbox-0": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-1": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-2": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-3": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-4": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-5": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-6": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-7": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-8": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-9": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-10": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-11": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-12": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-13": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-14": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-15": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-16": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-17": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-18": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-19": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-20": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-21": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-22": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-23": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-24": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-25": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-26": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-27": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-28": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-29": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-30": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-31": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-32": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-33": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-34": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-35": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-36": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-37": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-38": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-39": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-40": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-41": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-42": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-43": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-44": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-45": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-46": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-47": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-48": {
+    "checked": false,
+    "classes": "active current-level"
+  },
+  "checkbox-49": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-50": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-51": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-52": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-53": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-54": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-55": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-56": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-57": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-58": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-59": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-60": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-61": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-62": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-63": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-64": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-65": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-66": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-67": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-68": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-69": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-70": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-71": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-72": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-73": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-74": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-75": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-76": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-77": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-78": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-79": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-80": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-81": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-82": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-83": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-84": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-85": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-86": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-87": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-88": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-89": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-90": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-91": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-92": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-93": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-94": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-95": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-96": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-97": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-98": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-99": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-100": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-101": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-102": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-103": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-104": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-105": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-106": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-107": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-108": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-109": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-110": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-111": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-112": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-113": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-114": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-115": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-116": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-117": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-118": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-119": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-120": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-121": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-122": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-123": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-124": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-125": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-126": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-127": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-128": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-129": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-130": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-131": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-132": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-133": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-134": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-135": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-136": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-137": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-138": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-139": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-140": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-141": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-142": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-143": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-144": {
+    "checked": true,
+    "classes": "active"
+  },
+  "checkbox-145": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-146": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-147": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-148": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-149": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-150": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-151": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-152": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-153": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-154": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-155": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-156": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-157": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-158": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-159": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-160": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-161": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-162": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-163": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-164": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-165": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-166": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-167": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-168": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-169": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-170": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-171": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-172": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-173": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-174": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-175": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-176": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-177": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-178": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-179": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-180": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-181": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-182": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-183": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-184": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-185": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-186": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-187": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-188": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-189": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-190": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-191": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-192": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-193": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-194": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-195": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-196": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-197": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-198": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-199": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-200": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-201": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-202": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-203": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-204": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-205": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-206": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-207": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-208": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-209": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-210": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-211": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-212": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-213": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-214": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-215": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-216": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-217": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-218": {
+    "checked": false,
+    "classes": "active"
+  },
+  "checkbox-219": {
+    "checked": true,
+    "classes": "active current-level"
+  },
+  "checkbox-220": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-221": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-222": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-223": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-224": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-225": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-226": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-227": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-228": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-229": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-230": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-231": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-232": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-233": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-234": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-235": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-236": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-237": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-238": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-239": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-240": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-241": {
+    "checked": false,
+    "classes": "total-checkbox"
+  },
+  "checkbox-242": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-243": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-244": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-245": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-246": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-247": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-248": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-249": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-250": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-251": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-252": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-253": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-254": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-255": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-256": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-257": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-258": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-259": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-260": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-261": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-262": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-263": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-264": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-265": {
+    "checked": false,
+    "classes": ""
+  },
+  "checkbox-266": {
+    "checked": false,
+    "classes": ""
+  }
+}

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6y4t8x2n1w9r"]
+
+[ext_resource type="Script" path="res://src/UI/Components/CappedCounter/CappedCounter.cs" id="1_capped"]
+
+[node name="CappedCounter" type="Control"]
+custom_minimum_size = Vector2(280, 24)
+layout_mode = 0
+mouse_filter = 0
+script = ExtResource("1_capped")
+BoxCount = 14

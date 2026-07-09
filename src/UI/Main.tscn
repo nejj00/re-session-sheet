@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqhqnq1p4qq1a"]
+
+[ext_resource type="Script" path="res://src/UI/Main.cs" id="1_scaffold"]
+[ext_resource type="Theme" uid="uid://c8n2p6r4x9t1w" path="res://src/UI/Theme/base_theme.tres" id="2_theme"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_scaffold")

@@ -1,0 +1,3754 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Resident Evil Character Sheet</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&amp;family=Metal+Mania&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS CDN - Added for consistency with new elements, though custom CSS is dominant -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Metal Mania', cursive;
+            /* Applied Metal Mania globally */
+            margin: 0;
+            background-color: #3f3f3f;
+            /* Dark grey background */
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #000;
+            /* Default text color to black for most elements */
+            font-size: 12.54px;
+            /* Decreased overall font size by 5% (13.2px * 0.95 = 12.54px) */
+            min-height: 100vh;
+            /* Ensure background extends to full viewport height */
+            /* Added subtle white glow to all black text */
+            text-shadow: 0 0 2px #ffffff, 0 0 2px #ffffff;
+        }
+
+        .character-sheet-container {
+            width: 800px;
+            /* Fixed width based on the image's aspect ratio */
+            height: 100%;
+            /* Increased overall height */
+            border: 1px solid #000;
+            /* Enhanced background for old paper effect with more prominent stains/wrinkles */
+            background-color: #f7e6c7;
+            /* Old paper base color (light cream/tan) */
+            background-image:
+                /* Large, faint stain in top-left */
+                radial-gradient(circle at 15% 20%, rgba(139, 69, 19, 0.05) 0%, rgba(139, 69, 19, 0) 70%),
+                /* Medium, slightly darker stain mid-right */
+                radial-gradient(circle at 70% 45%, rgba(139, 69, 19, 0.07) 0%, rgba(139, 69, 19, 0) 60%),
+                /* Small, faint stain bottom-left */
+                radial-gradient(circle at 30% 85%, rgba(139, 69, 19, 0.04) 0%, rgba(139, 69, 19, 0) 50%),
+                /* New: Darker, aged blood/coffee stain top-right */
+                radial-gradient(ellipse at 85% 10%, rgba(70, 20, 0, 0.1) 0%, rgba(70, 20, 0, 0) 70%),
+                /* New: More irregular, darker spot mid-left */
+                radial-gradient(circle at 20% 60%, rgba(70, 20, 0, 0.12) 0%, rgba(70, 20, 0, 0) 65%),
+                /* New: Elongated, subtle wrinkle/crease simulation (linear-gradient) */
+                linear-gradient(145deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0) 30%),
+                /* Another subtle wrinkle */
+                linear-gradient(35deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 25%);
+            background-repeat: no-repeat;
+            background-size: 250px 250px, 180px 180px, 100px 100px, 120px 80px, 90px 90px, 100% 100px, 100% 80px;
+            /* Sizes for each stain and wrinkle */
+            background-position: 15% 20%, 70% 45%, 30% 85%, 85% 10%, 20% 60%, 0% 10%, 0% 70%;
+            /* Positions for each background layer */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            /* Gap between major sections */
+            padding: 10px;
+        }
+
+        .header {
+            background-color: rgba(100, 100, 100, 1);
+            /* This is now the grey outline color */
+            padding: 5px 1px;
+            /* Creates the grey border on top/bottom (5px) and sides (1px) */
+            font-weight: bold;
+            position: relative;
+            /* For positioning the Umbrella logos */
+            height: auto;
+            /* Let height adjust based on content and padding */
+            box-sizing: border-box;
+            /* Include padding in dimensions */
+            display: flex;
+            /* Use flex to align content within the border */
+            align-items: center;
+            /* Vertically center the .title-bar inside */
+            justify-content: center;
+            /* Horizontally center the .title-bar inside */
+            box-shadow: none;
+            /* Removed previous box-shadow for a clean border */
+        }
+
+        .header .title-bar {
+            background-color: #2b2b2b;
+            /* The inner dark grey bar */
+            flex-grow: 1;
+            /* Allows it to fill the available space within .header */
+            height: 100%;
+            /* Fill available height within the header padding */
+            display: flex;
+            flex-direction: column;
+            /* Stack main title and subtitle */
+            align-items: center;
+            /* Center horizontally */
+            justify-content: center;
+            /* Center vertically */
+            position: relative;
+            /* Essential for positioning the subtitle inside */
+            overflow: hidden;
+            /* Prevent text from spilling out if sizing is off */
+        }
+
+        .header .title-bar span {
+            font-family: 'Rubik Distressed', sans-serif;
+            /* FIXED: Corrected font name here */
+            font-size: 30px;
+            /* Precise font size for "RESIDENT EVIL" */
+            letter-spacing: 2px;
+            text-shadow: 0px 2px 5px rgba(200, 200, 200, 0.8);
+            /* Silver glow */
+            background: linear-gradient(to right, #ccc, #fff, #ccc);
+            /* Gradient text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            /* Required for transform */
+            transform: skewX(-15deg) translateY(-5px);
+            /* Keep original Y for main title */
+            white-space: nowrap;
+            /* Prevent wrapping */
+        }
+
+        .header .subtitle {
+            font-family: 'Metal Mania', cursive;
+            font-size: 13px;
+            /* Precise font size for subtitle */
+            font-weight: normal;
+            color: #ccc;
+            position: absolute;
+            /* Absolute positioning relative to .title-bar */
+            bottom: -5px;
+            /* Adjusted to move it further down and prevent overlap */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Adjusted back to standard centering */
+            white-space: nowrap;
+            /* Prevent wrapping */
+            text-shadow: 0 0 2px #555;
+            /* Darker, subtle shadow for subtitle */
+            z-index: 2;
+            /* Ensure it's above the main title's background/shadow if needed */
+        }
+
+        /* Base style for the Umbrella logo SVG container */
+        .umbrella-logo-svg {
+            position: absolute;
+            /* Position relative to the .header (its parent) */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            /* Reduced from 40px */
+            height: 32px;
+            /* Reduced from 40px */
+            z-index: 2;
+            /* Added grey glow */
+            box-shadow: 0 0 8px rgba(150, 150, 150, 0.7);
+            /* Grey glow effect */
+            border-radius: 50%;
+            /* Apply border-radius to contain the shadow */
+        }
+
+        .umbrella-logo-left {
+            left: 10px;
+        }
+
+        .umbrella-logo-right {
+            right: 10px;
+        }
+
+        /* Info grid styling for the new 2-column layout + photo */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.1fr 0.8fr;
+            /* Two data columns, one photo column */
+            gap: 2px;
+            background-color: #888;
+            /* Border color for the grid */
+            padding: 1px;
+            border: 1px solid #555;
+        }
+
+        /* Styling for individual info items within the new columns */
+        .info-item {
+            background-color: #c0c0c0;
+            /* Reverted to original light grey */
+            padding: 2px 5px;
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-start;
+            border: 1px solid #a0a0a0;
+            /* Cell border */
+            box-sizing: border-box;
+            /* Ensure no aged effect here */
+            background-image: none;
+            background-repeat: initial;
+            background-size: initial;
+            background-position: initial;
+        }
+
+        /* Container for left and right info columns */
+        .info-column-left,
+        .info-column-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            /* Gap between info items vertically */
+            background-color: #888;
+            /* Matches info-grid border for seamless look */
+            padding: 0;
+            /* No padding here as info-item has it */
+        }
+
+        .info-grid label {
+            font-weight: bold;
+            margin-right: 5px;
+            white-space: nowrap;
+        }
+
+        .info-grid input[type="text"],
+        .info-grid input[type="number"] {
+            flex-grow: 1;
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none;
+            padding: 0 2px;
+            font-size: 14px;
+            /* Increased from 12.54px */
+            color: #000;
+        }
+
+        /* Photo box styling */
+        .photo-box {
+            grid-column: 3 / 4;
+            /* Span the last column */
+            grid-row: 1 / span 6;
+            /* Span all rows of info grid */
+            background-color: #e0e0e0;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            /* To stack text and image */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #555;
+            font-size: 0.9em;
+            /* This will scale relative to the new body font-size */
+            font-style: italic;
+            overflow: hidden;
+            /* Ensure content doesn't spill */
+            position: relative;
+            cursor: pointer;
+            /* Indicate it's clickable */
+        }
+
+        .photo-box img {
+            width: 100%;
+            /* Make image take full width of container */
+            height: 190px;
+            /* Make image take full height of container */
+            object-fit: cover;
+            /* This will make the image fill the box, cropping if necessary */
+            display: block;
+            /* Remove extra space below image */
+            margin: auto;
+            /* Center image within box */
+        }
+
+        .photo-box p {
+            /* Style for the "Click to upload photo" text */
+            margin: 0;
+            padding: 5px;
+            color: #555;
+        }
+
+
+        /* Section styling */
+        .section-title {
+            background-color: #7a7a7a;
+            color: #fff;
+            padding: 3px 10px;
+            margin-top: 5px;
+            /* Increased font size for main section titles */
+            font-size: 1.2em;
+            /* Adjusted from 1.1em */
+            font-weight: bold;
+            /* Increased border width and darker color */
+            border: 2px solid #333;
+            /* Changed from 1px solid #555 */
+            position: relative;
+            text-shadow: 1px 1px 1px #000;
+            display: flex;
+            /* Use flexbox to align icon and text */
+            align-items: center;
+            gap: 8px;
+            /* Space between icon and text */
+        }
+
+        .section-title .icon {
+            /* Common class for all icons in section titles */
+            width: 18px;
+            /* Reduced from 24px */
+            height: 18px;
+            /* Reduced from 24px */
+            fill: #fff;
+            /* Color of the icon */
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+            /* Add a subtle white glow */
+        }
+
+        /* Updated section content styling */
+        .section-content {
+            background-color: #e6d3b3;
+            /* Lighter cream for main content sections */
+            border: 1px solid #888;
+            padding: 5px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            /* Gap between columns */
+            background-image:
+                linear-gradient(20deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 30%),
+                radial-gradient(circle at 90% 10%, rgba(139, 69, 19, 0.03) 0%, rgba(139, 69, 19, 0) 60%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%, 80px 80px;
+            background-position: 0% 0%, 90% 10%;
+        }
+
+        .column-header {
+            background-color: #7a7a7a;
+            color: #fff;
+            padding: 2px 0;
+            text-align: center;
+            font-weight: bold;
+            /* Increased border width and darker color */
+            border: 2px solid #333;
+            /* Changed from 1px solid #555 */
+            margin-bottom: 2px;
+            position: relative;
+            display: flex;
+            /* Use flexbox to align icon and text */
+            align-items: center;
+            justify-content: center;
+            /* Center content including icon */
+            gap: 5px;
+            /* Space between icon and text */
+            text-shadow: 1px 1px 1px #000;
+            /* Added text shadow here */
+            /* Increased font size for column headers */
+            font-size: 1.2em;
+            /* Adjusted from 1.1em */
+        }
+
+        .column-header .icon {
+            /* Common class for all icons in column headers */
+            width: 14px;
+            /* Still good for these smaller ones */
+            height: 14px;
+            /* Still good for these smaller ones */
+            fill: #fff;
+            /* Color of the icon */
+            flex-shrink: 0;
+        }
+
+        .weapon-row .icon {
+            width: 16px;
+            /* Reduced from 20px */
+            height: 16px;
+            /* Reduced from 20px */
+            fill: #000;
+            /* Weapon icons should be black */
+            margin-right: 3px;
+            vertical-align: middle;
+        }
+
+        /* Pistol icon (new) */
+        .pistol-icon {
+            background-color: transparent;
+        }
+
+        .pistol-icon path {
+            fill: #000;
+        }
+
+        /* Original knife icon (retained for generic weapon, if needed elsewhere) */
+        .knife-icon {
+            background-color: transparent;
+        }
+
+        .knife-icon path {
+            fill: #000;
+        }
+
+        /* Original gun icon (retained for generic weapon, if needed elsewhere) */
+        .gun-icon {
+            background-color: transparent;
+        }
+
+        .gun-icon path {
+            fill: #000;
+        }
+
+        /* SVG for sword/melee icon */
+        .melee-icon {
+            background-color: transparent;
+        }
+
+        .melee-icon path {
+            fill: #000;
+        }
+
+        /* SVG for special weapon icon (star) */
+        .special-weapon-icon {
+            background-color: transparent;
+        }
+
+        .special-weapon-icon path {
+            fill: #000;
+        }
+
+        /* Updated attribute/ability/advantage column styling */
+        .attribute-column,
+        .ability-column,
+        .advantage-column {
+            background-color: #f0e6d6;
+            /* Very light cream for sub-columns */
+            padding: 3px;
+            border: 1px solid #a0a0a0;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                linear-gradient(80deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 40%),
+                radial-gradient(circle at 25% 75%, rgba(139, 69, 19, 0.02) 0%, rgba(139, 69, 19, 0) 50%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%, 50px 50px;
+            background-position: 0% 0%, 25% 75%;
+        }
+
+        /* Attribute items: Ensure label is left, dots are right */
+        .attribute-item,
+        .virtue-item {
+            display: flex;
+            align-items: center;
+            padding: 1px 0;
+            justify-content: space-between;
+            /* This ensures label is left, dots are right */
+        }
+
+        /* Inner flex container for cost display and dots */
+        .dots-and-cost-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            /* Align to the right for text-align: right */
+            flex-shrink: 0;
+            /* Prevent from shrinking */
+        }
+
+        /* Next Level Cost Display for Attributes and Abilities */
+        .next-level-cost-display {
+            font-size: 0.7em;
+            /* Slightly smaller font for cost */
+            color: #555;
+            /* Slightly muted color */
+            text-align: right;
+            /* Align text to the right */
+            /* Removed width: 100% from here to allow it to shrink if needed by flex,
+           and rely on flex-grow for spacing. */
+            white-space: nowrap;
+            /* Prevent wrapping */
+            margin-bottom: 0px;
+            /* Reduced space between cost and dots */
+            margin-left: auto;
+            /* Push to the right within flex container */
+            text-shadow: none;
+            /* No white glow on this text */
+            height: 1.1em;
+            /* Ensure consistent height for spacing */
+            line-height: 1.1em;
+            /* Vertically center text in its line height */
+        }
+
+        /* Dots container for XP-costing attributes/abilities */
+        .dots {
+            display: flex;
+            flex-shrink: 0;
+            /* Prevent dots from shrinking */
+            margin-top: 0px;
+            /* Push dots up slightly */
+        }
+
+        /* Base styling for all XP-costing dots (attributes/abilities) */
+        .dots input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+            /* White for unchecked dots */
+            border-radius: 50%;
+            width: 9px;
+            /* Slightly smaller dot size */
+            height: 9px;
+            /* Slightly smaller dot size */
+            margin: 0 1px;
+            /* Reduced margin to bring dots closer */
+            cursor: pointer;
+            border: 1px solid #000;
+            /* Black border for unchecked dots */
+            transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+            /* Added transitions */
+        }
+
+        /* Active (filled) state for XP-costing dots */
+        .dots input[type="checkbox"].active {
+            background-color: #000;
+            /* Black for checked/active dots */
+            border-color: #eee;
+            /* Lighter border for checked */
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+            /* Subtle glow for active */
+        }
+
+        /* Current level highlight for XP-costing dots (specific border) */
+        .dots input[type="checkbox"].current-level {
+            border: 2px solid #f59e0b;
+            /* Yellow/orange border for current level */
+        }
+
+        /* Specific adjustment for ability dots */
+        /* Removed specific margin here, using general .dots input[type="checkbox"] */
+        /* .ability-item .dots input[type="checkbox"] {
+        margin: 0 0.5px;
+    } */
+
+        .dots input[type="checkbox"]:hover {
+            transform: scale(1.1);
+        }
+
+        .dots input[type="checkbox"].active:hover {
+            transform: scale(1.15);
+        }
+
+        /* Virtue dots (no XP cost) - distinctive styling */
+        .virtue-dots {
+            display: flex;
+            flex-shrink: 0;
+        }
+
+        .virtue-dots input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+            /* White for unchecked virtues */
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            margin: 0 2px;
+            cursor: pointer;
+            border: 1px solid #7a7a7a;
+            /* Grey border for virtue dots */
+            transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+        }
+
+        .virtue-dots input[type="checkbox"].active {
+            background-color: #7a7a7a;
+            /* Darker grey for active virtues */
+            border-color: #555;
+            box-shadow: 0 0 3px rgba(122, 122, 122, 0.7);
+        }
+
+        .virtue-dots input[type="checkbox"].current-level {
+            border: 2px solid #d4af37;
+            /* Gold/brown border for current virtue level */
+        }
+
+        .virtue-dots input[type="checkbox"]:hover {
+            transform: scale(1.1);
+        }
+
+        .virtue-dots input[type="checkbox"].active:hover {
+            transform: scale(1.15);
+        }
+
+
+        /* General text input line style */
+        .text-input-line {
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none;
+            padding: 0 2px;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            color: #000;
+            min-width: 30px;
+            /* Ensure input is visible */
+        }
+
+        /* UPDATED: Style for the ability items to match image alignment */
+        .ability-item {
+            display: grid;
+            grid-template-columns: 80px 1fr max-content;
+            /* Reduced label column, flexible input, dots */
+            align-items: center;
+            /* Vertically align items in the grid row */
+            padding: 1px 0;
+            /* Keep some padding */
+        }
+
+        /* UPDATED: Style for the text inputs next to abilities (Talent, Skill, Knowledge) */
+        .ability-text-input {
+            width: 60px;
+            /* Fixed shorter width for the input field itself */
+            text-align: center;
+            /* Center the text within the input */
+            margin: 0 auto;
+            /* Center the input within its grid cell */
+        }
+
+        /* UPDATED: Ability item labels - now matches attribute labels in size/weight and has fixed width */
+        .ability-item label {
+            white-space: nowrap;
+            /* Prevent wrapping if label is too long for 80px, it will overflow */
+            text-align: left;
+            /* Ensure label is left-aligned within its grid cell */
+            font-size: 1.1em;
+            font-weight: bold;
+            /* No margin-right here, grid handles spacing */
+        }
+
+        /* Removed ability-label-input-group as it's no longer needed for abilities */
+        /* .ability-label-input-group {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 120px;
+    } */
+
+        /* Virtue item labels - now matches attribute labels in size/weight */
+        .virtue-item label {
+            white-space: nowrap;
+            flex-grow: 0;
+            /* Prevent label from growing */
+            flex-shrink: 0;
+            margin-right: 5px;
+            /* Space between label and dots */
+            text-align: left;
+            font-size: 1.1em;
+            /* Set to match attribute labels */
+            font-weight: bold;
+            /* Set to match attribute labels */
+        }
+
+        /* Health item labels - now matches attribute labels in size/weight */
+        .health-item-new label {
+            font-weight: bold;
+            /* Match font-weight to attributes */
+            font-size: 1.1em;
+            /* Match font-size to attributes */
+            margin-right: 5px;
+            flex-grow: 0;
+            width: 80px;
+            /* Fixed width for labels */
+        }
+
+
+        .total-checkbox {
+            margin-left: 5px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #000;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+            vertical-align: middle;
+        }
+
+        .total-checkbox:checked {
+            background-color: #000;
+        }
+
+        /* Merits & Flaws Section */
+        .merits-flaws-section {
+            background-color: #e6d3b3;
+            /* Consistent with main content sections */
+            border: 1px solid #888;
+            padding: 5px;
+            margin-top: 5px;
+            background-image:
+                linear-gradient(-20deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 30%),
+                radial-gradient(circle at 10% 90%, rgba(70, 20, 0, 0.04) 0%, rgba(70, 20, 0, 0) 50%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%, 70px 70px;
+            background-position: 0% 0%, 10% 90%;
+        }
+
+        .merits-flaws-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* Updated sub-section styling */
+        .merits-sub-section,
+        .flaws-sub-section,
+        .other-traits-sub-section,
+        .backgrounds-sub-section {
+            flex: 1;
+            border: 1px solid #a0a0a0;
+            padding: 5px;
+            background-color: #f0e6d6;
+            /* Consistent with attribute columns */
+            background-image:
+                radial-gradient(circle at 75% 25%, rgba(139, 69, 19, 0.03) 0%, rgba(139, 69, 19, 0) 60%),
+                linear-gradient(100deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 40%);
+            background-repeat: no-repeat;
+            background-size: 60px 60px, 100% 100%;
+            background-position: 75% 25%, 0% 0%;
+        }
+
+        .sub-section-title {
+            background-color: #7a7a7a;
+            color: #fff;
+            padding: 3px 5px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            /* Increased border width and darker color */
+            border: 2px solid #333;
+            /* Changed from 1px solid #555 */
+            text-shadow: 1px 1px 1px #000;
+            /* Increased font size for sub-section titles */
+            font-size: 1.2em;
+            /* Adjusted from 1.1em */
+        }
+
+        .merit-item,
+        .flaw-item,
+        .trait-item,
+        .background-item {
+            /* Changed other-trait-item to trait-item */
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+            gap: 5px;
+            /* Space between input and button */
+        }
+
+        .merit-item label,
+        .flaw-item label,
+        .trait-item label,
+        .background-item label {
+            /* Changed other-trait-item to trait-item */
+            white-space: nowrap;
+            margin-right: 5px;
+            font-weight: normal;
+        }
+
+        .merit-item input[type="text"],
+        .flaw-item input[type="text"],
+        .trait-item input[type="text"],
+        .background-item input[type="text"] {
+            /* Changed other-trait-item to trait-item */
+            flex-grow: 1;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            padding: 1px 2px;
+            background-color: #e0e0e0;
+            border: 1px solid #888;
+        }
+
+        .add-field-btn,
+        .delete-field-btn {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            margin-top: 8px;
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 1.14em;
+            /* Decreased by 5% from 1.2em */
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .add-field-btn:hover,
+        .delete-field-btn:hover {
+            background-color: #666;
+            transform: translateY(-1px);
+        }
+
+        .add-field-btn:active,
+        .delete-field-btn:active {
+            background-color: #444;
+            transform: translateY(0);
+        }
+
+        .delete-field-btn {
+            width: auto;
+            /* Allow button to size to content */
+            margin-top: 0;
+            /* Align with input */
+            padding: 1px 5px;
+            font-size: 0.912em;
+            /* Decreased by 5% from 0.96em */
+            background-color: #c00;
+            border-color: #800;
+        }
+
+        .delete-field-btn:hover {
+            background-color: #d00;
+        }
+
+
+        /* Health and Equipment */
+        .health-equipment-combined-section {
+            display: grid;
+            grid-template-columns: 1.7fr 1.3fr;
+            /* Adjusted for wider equipment section */
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        /* Updated health-armor-box styling */
+        .health-armor-box {
+            background-color: #e6d3b3;
+            /* Consistent with main content sections */
+            border: 1px solid #888;
+            padding: 5px;
+            position: relative;
+            /* For positioning the title */
+            background-image:
+                radial-gradient(circle at 10% 90%, rgba(70, 20, 0, 0.03) 0%, rgba(70, 20, 0, 0) 60%),
+                linear-gradient(70deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 30%);
+            background-repeat: no-repeat;
+            background-size: 70px 70px, 100% 100%;
+            background-position: 10% 90%, 0% 0%;
+        }
+
+        .health-title-standalone {
+            background-color: #7a7a7a;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            /* Increased border width and darker color */
+            border: 2px solid #333;
+            /* Changed from 1px solid #555 */
+            text-shadow: 1px 1px 1px #000;
+            /* Increased font size for health title */
+            font-size: 1.2em;
+            /* Adjusted from 1.1em */
+            text-align: center;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom: none;
+            position: relative;
+            top: -5px;
+            /* Adjust to align with the top border of the parent */
+            margin-top: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-left: -5px;
+            /* Extend to left edge */
+            padding-left: 10px;
+            width: calc(100% + 10px);
+            /* Extend to right edge */
+            box-sizing: border-box;
+        }
+
+        .health-item-new {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .health-item-new .penalty {
+            font-size: 1.026em;
+            /* Decreased by 5% from 1.08em */
+            margin-right: 5px;
+            width: 20px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        /* Health item checkbox styling - initial state */
+        .health-item-new input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #000;
+            background-color: #fff;
+            cursor: pointer;
+            flex-shrink: 0;
+            /* Add transition for smoother visual changes */
+            transition: background-color 0.15s ease-in-out, background-image 0.15s ease-in-out;
+        }
+
+        /* State 1: Crossed out */
+        .health-item-new input[type="checkbox"].crossed-out {
+            background-image:
+                linear-gradient(to top right, transparent 48%, #000 49%, #000 51%, transparent 52%),
+                linear-gradient(to top left, transparent 48%, #000 49%, #000 51%, transparent 52%);
+            background-size: 100% 100%;
+            /* Ensure gradients cover the box */
+            background-repeat: no-repeat;
+            background-color: #fff;
+            /* Keep background white */
+        }
+
+        /* State 2: Filled completely */
+        .health-item-new input[type="checkbox"].filled {
+            background-color: #000;
+            border-color: #eee;
+            background-image: none;
+            /* Remove cross when filled */
+        }
+
+        .health-item-new input[type="text"] {
+            /* New style for health status inputs */
+            flex-grow: 1;
+            /* Allow text input to fill available space */
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none;
+            padding: 0 2px;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            color: #000;
+            margin-left: 5px;
+            /* Space between checkbox and text input */
+        }
+
+        /* New container for side-by-side strain and temporary status */
+        .strain-status-row-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px dashed #999;
+        }
+
+        .strain-section-in-health {
+            flex: 1;
+            padding-right: 5px;
+        }
+
+        .temp-status-section {
+            flex: 1;
+            padding-left: 5px;
+        }
+
+        .strain-section-in-health label,
+        .temp-status-section label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .armor-section-in-health {
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px dashed #999;
+        }
+
+        .armor-section-in-health .equipment-item-row {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        /* Updated equipment-box-weapons styling */
+        .equipment-box-weapons {
+            background-color: #e6d3b3;
+            border: 1px solid #888;
+            padding: 5px;
+            background-image:
+                linear-gradient(50deg, rgba(0, 0, 0, 0.015) 0%, rgba(0, 0, 0, 0) 40%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.04) 0%, rgba(139, 69, 19, 0) 55%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%, 90px 90px;
+            background-position: 0% 0%, 80% 80%;
+        }
+
+        .equipment-box-weapons .section-title {
+            margin: -5px -5px 5px -5px;
+            border: 2px solid #333;
+            background-color: #7a7a7a;
+            font-size: 1.2em;
+        }
+
+        /* Updated equipment-item-group styling */
+        .equipment-item-group {
+            background-color: #f0e6d6;
+            padding: 3px;
+            border: 1px solid #a0a0a0;
+            margin-bottom: 3px;
+            background-image:
+                radial-gradient(circle at 30% 60%, rgba(70, 20, 0, 0.02) 0%, rgba(70, 20, 0, 0) 45%);
+            background-repeat: no-repeat;
+            background-size: 40px 40px;
+            background-position: 30% 60%;
+        }
+
+        .equipment-item-row {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 3px;
+        }
+
+        .equipment-item-row label {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .equipment-item-row input[type="text"],
+        .equipment-item-row input[type="number"] {
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none;
+            padding: 0 2px;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            color: #000;
+            min-width: 20px;
+        }
+
+        /* Adjusted width for the "Armor" text input */
+        .equipment-item-row .input-armor-name {
+            width: 218px;
+        }
+
+        /* Increased width for "Bonus" and "Penalty" inputs */
+        .equipment-item-row .input-short {
+            width: 35px;
+        }
+
+        .equipment-item-row .input-medium {
+            width: 30px;
+        }
+
+        .equipment-item-row .input-long {
+            flex-grow: 1;
+            min-width: 50px;
+        }
+
+        .equipment-item-row .input-extra-long {
+            flex-grow: 1;
+            min-width: 100px;
+        }
+
+        .weapon-row-icon {
+            width: 16px;
+            /* Reduced from 20px */
+            height: 16px;
+            /* Reduced from 20px */
+            margin-right: 5px;
+            flex-shrink: 0;
+            fill: #000;
+        }
+
+        /* Pistol icon (new) */
+        .pistol-icon {
+            background-color: transparent;
+        }
+
+        .pistol-icon path {
+            fill: #000;
+        }
+
+        /* Original knife icon (retained for generic weapon, if needed elsewhere) */
+        .knife-icon {
+            background-color: transparent;
+        }
+
+        .knife-icon path {
+            fill: #000;
+        }
+
+        /* Original gun icon (retained for generic weapon, if needed elsewhere) */
+        .gun-icon {
+            background-color: transparent;
+        }
+
+        .gun-icon path {
+            fill: #000;
+        }
+
+        /* SVG for sword/melee icon */
+        .melee-icon {
+            background-color: transparent;
+        }
+
+        .melee-icon path {
+            fill: #000;
+        }
+
+        /* SVG for special weapon icon (star) */
+        .special-weapon-icon {
+            background-color: transparent;
+        }
+
+        .special-weapon-icon path {
+            fill: #000;
+        }
+
+        /* Inventory Section Specific Styles */
+        .inventory-section {
+            background-color: #e6d3b3;
+            border: 1px solid #888;
+            padding: 5px;
+            margin-top: 5px;
+            background-image:
+                radial-gradient(circle at 95% 5%, rgba(70, 20, 0, 0.05) 0%, rgba(70, 20, 0, 0) 70%),
+                linear-gradient(-45deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0) 30%);
+            background-repeat: no-repeat;
+            background-size: 80px 80px, 100% 100%;
+            background-position: 95% 5%, 0% 0%;
+        }
+
+        .inventory-section .section-title {
+            margin: -5px -5px 5px -5px;
+            border: 2px solid #333;
+            background-color: #7a7a7a;
+            text-shadow: 1px 1px 1px #000;
+            font-size: 1.2em;
+        }
+
+        .inventory-section textarea {
+            width: calc(100% - 10px);
+            height: 100px;
+            border: 1px solid #000;
+            background-color: #f0e6d6;
+            resize: vertical;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            padding: 3px;
+            box-sizing: border-box;
+        }
+
+
+        /* Experience box specific styles */
+        .experience-box {
+            background-color: #e6d3b3;
+            border: 1px solid #888;
+            padding: 5px;
+            margin-top: 5px;
+            background-image:
+                linear-gradient(25deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 35%),
+                radial-gradient(circle at 15% 70%, rgba(139, 69, 19, 0.03) 0%, rgba(139, 69, 19, 0) 50%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%, 60px 60px;
+            background-position: 0% 0%, 15% 70%;
+        }
+
+        .experience-box .section-title {
+            margin: -5px -5px 5px -5px;
+            border: 2px solid #333;
+            background-color: #7a7a7a;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .experience-box .exp-fields-top {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        .experience-box .exp-fields-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .experience-box .exp-fields-item label {
+            font-weight: bold;
+        }
+
+        .experience-box .exp-fields-item input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none;
+            padding: 0 2px;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            color: #000;
+        }
+
+        .experience-box textarea {
+            width: calc(100% - 10px);
+            height: 120px;
+            border: 1px solid #000;
+            background-color: #f0e6d6;
+            resize: vertical;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            padding: 3px;
+            box-sizing: border-box;
+        }
+
+        /* Loading indicator for Gemini API call */
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.026em;
+            color: #555;
+        }
+
+        /* Herb Usage Section Styles */
+        .herb-usage-section {
+            background-color: #e6d3b3;
+            border: 1px solid #888;
+            padding: 5px;
+            margin-top: 5px;
+            background-image:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 40%),
+                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.03) 0%, rgba(139, 69, 19, 0) 50%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%, 60px 60px;
+            background-position: 0% 0%, 80% 20%;
+            text-align: center;
+        }
+
+        .herb-usage-section .section-title {
+            margin: -5px -5px 5px -5px;
+            border: 2px solid #333;
+            background-color: #7a7a7a;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .herb-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 0;
+        }
+
+        .herb-btn {
+            padding: 6px 12px;
+            background-color: #28a745;
+            color: white;
+            border: 2px solid #1e7e34;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Metal Mania', cursive;
+            font-size: 1em;
+            text-shadow: 1px 1px 1px #000;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.2s, transform 0.1s;
+            min-width: 90px;
+            box-sizing: border-box;
+        }
+
+        .herb-btn:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+
+        .herb-btn:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Specific herb button colors for visual distinction */
+        .herb-btn.green-btn {}
+
+        .herb-btn.red-blue-btn {
+            background-color: #dc3545;
+            border-color: #bd2130;
+        }
+
+        .herb-btn.red-blue-btn:hover {
+            background-color: #c82333;
+        }
+
+        .herb-btn.red-blue-btn:active {
+            background-color: #bd2130;
+        }
+
+        .herb-btn.green-blue-btn {
+            background-color: #17a2b8;
+            border-color: #117a8b;
+        }
+
+        .herb-btn.green-blue-btn:hover {
+            background-color: #138496;
+        }
+
+        .herb-btn.green-blue-btn:active {
+            background-color: #117a8b;
+        }
+
+        .herb-btn.green-green-blue-btn {
+            background-color: #20c997;
+            border-color: #189871;
+        }
+
+        .herb-btn.green-green-blue-btn:hover {
+            background-color: #1aaf8c;
+        }
+
+        .herb-btn.green-green-blue-btn:active {
+            background-color: #189871;
+        }
+
+        .herb-btn.green-green-red-btn {
+            background-color: #fd7e14;
+            border-color: #cb6510;
+        }
+
+        .herb-btn.green-green-red-btn:hover {
+            background-color: #e66b0d;
+        }
+
+        .herb-btn.green-green-red-btn:active {
+            background-color: #cb6510;
+        }
+
+        .herb-btn.red-green-blue-btn {
+            background-color: #6f42c1;
+            border-color: #563198;
+        }
+
+        .herb-btn.red-green-blue-btn:hover {
+            background-color: #5f37a8;
+        }
+
+        .herb-btn.red-green-blue-btn:active {
+            background-color: #563198;
+        }
+
+        .action-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-button {
+            padding: 8px 15px;
+            background-color: #6c757d;
+            color: white;
+            border: 2px solid #545b62;
+            border-radius: 50%;
+            cursor: pointer;
+            font-family: 'Metal Mania', cursive;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 1px #000;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.2s, transform 0.1s;
+            min-width: 120px;
+            box-sizing: border-box;
+        }
+
+        .action-button:hover {
+            background-color: #5a6268;
+            transform: translateY(-1px);
+        }
+
+        .action-button:active {
+            background-color: #494f54;
+            transform: translateY(0);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Style for First Aid Spray button */
+        #first-aid-spray-btn {
+            background-color: #ffc107;
+            color: #333;
+            border-color: #e0a800;
+            text-shadow: none;
+        }
+
+        #first-aid-spray-btn:hover {
+            background-color: #e0a800;
+        }
+
+        #first-aid-spray-btn:active {
+            background-color: #d39e00;
+        }
+
+
+        .health-status-sub-section {
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px dashed #999;
+        }
+
+        .health-status-sub-section label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Updated styling for temp-status-textarea */
+        .temp-status-section #temp-status-textarea {
+            /* Targeting specifically within temp-status-section */
+            width: 100%;
+            height: 60px;
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none;
+            padding: 0 2px;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            color: #000;
+            resize: both;
+            /* Changed from vertical to both */
+            box-sizing: border-box;
+            /* Ensure it can grow if flex parent allows */
+            min-width: 100px;
+            /* Give it a minimum width */
+        }
+
+        .health-status-sub-section input[type="number"] {
+            width: calc(100% - 10px);
+            background-color: #f0e6d6;
+            border: 1px solid #000;
+            padding: 3px;
+            font-size: 13px;
+            /* Increased from 11.4px */
+            color: #000;
+            box-sizing: border-box;
+        }
+
+        /* New styles for feedback messages */
+        .feedback-message {
+            text-align: center;
+            margin-top: 10px;
+            padding: 5px;
+            background-color: #fffacd;
+            color: #8b4513;
+            border: 1px solid #d2b48c;
+            border-radius: 3px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        /* Custom styling for message box (from previous model, adapted for existing feedback-message) */
+        .message-box-overlay {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .message-box-overlay.show {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .message-box-overlay.success {
+            background-color: #28a745;
+            /* Green */
+            color: white;
+        }
+
+        .message-box-overlay.error {
+            background-color: #dc3545;
+            /* Red */
+            color: white;
+        }
+
+        .message-box-overlay.info {
+            background-color: #6c757d;
+            /* Grey */
+            color: white;
+        }
+
+        /* Styling for XP add/spend buttons in Experience section */
+        .exp-action-btn {
+            padding: 4px 8px;
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.9em;
+            text-shadow: 1px 1px 1px #000;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .exp-action-btn:hover {
+            background-color: #666;
+            transform: translateY(-1px);
+        }
+
+        .exp-action-btn:active {
+            background-color: #444;
+            transform: translateY(0);
+        }
+
+        /* Style for the Clear Log button */
+        .utility-button {
+            padding: 4px 8px;
+            background-color: #6c757d;
+            color: white;
+            border: 1px solid #545b62;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.9em;
+            text-shadow: 1px 1px 1px #000;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 5px;
+            /* Added margin */
+            width: 100%;
+            /* Make it full width like other add/delete buttons */
+        }
+
+        .utility-button:hover {
+            background-color: #5a6268;
+            transform: translateY(-1px);
+        }
+
+        .utility-button:active {
+            background-color: #494f54;
+            transform: translateY(0);
+        }
+
+        .utility-button:disabled {
+            background-color: #a0a0a0;
+            border-color: #888888;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="character-sheet-container">
+        <div class="header">
+            <div class="umbrella-logo-svg umbrella-logo-left">
+                <svg height="100%" preserveaspectratio="xMidYMid meet" stroke-width="2" viewbox="0 0 300 300"
+                    width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www399/xlink">
+                    <radialgradient cx="150" cy="150" gradientunits="userSpaceOnUse" id="red" r="150">
+                        <stop offset=".3" stop-color="#c00"></stop>
+                        <stop offset=".7" stop-color="#a11"></stop>
+                    </radialgradient>
+                    <radialgradient cx="150" cy="150" gradientunits="userSpaceOnUse" id="white" r="150">
+                        <stop offset=".3" stop-color="#ddd"></stop>
+                        <stop offset=".6" stop-color="#fff"></stop>
+                        <stop offset=".9" stop-color="#ddd"></stop>
+                    </radialgradient>
+                    <g id="a">
+                        <g id="b">
+                            <path d="m206 5s-28 14-56 14-56-14-56-14l56 135z" fill="url(#red)" stroke="#870200"></path>
+                            <path d="m87 8s-10 30-30 50c-19 19-49 29-49 29l135 56z" fill="url(#white)" stroke="#bdbdbd">
+                            </path>
+                        </g>
+                        <use transform="rotate(90,150,150)" xlink:href="#b"></use>
+                    </g>
+                    <use transform="rotate(180,150,150)" xlink:href="#a"></use>
+                </svg>
+            </div>
+            <div class="umbrella-logo-svg umbrella-logo-right">
+                <svg height="100%" preserveaspectratio="xMidYMid meet" stroke-width="2" viewbox="0 0 300 300"
+                    width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www399/xlink">
+                    <radialgradient cx="150" cy="150" gradientunits="userSpaceOnUse" id="red" r="150">
+                        <stop offset=".3" stop-color="#c00"></stop>
+                        <stop offset=".7" stop-color="#a11"></stop>
+                    </radialgradient>
+                    <radialgradient cx="150" cy="150" gradientunits="userSpaceOnUse" id="white" r="150">
+                        <stop offset=".3" stop-color="#ddd"></stop>
+                        <stop offset=".6" stop-color="#fff"></stop>
+                        <stop offset=".9" stop-color="#ddd"></stop>
+                    </radialgradient>
+                    <g id="a">
+                        <g id="b">
+                            <path d="m206 5s-28 14-56 14-56-14-56-14l56 135z" fill="url(#red)" stroke="#870200"></path>
+                            <path d="m87 8s-10 30-30 50c-19 19-49 29-49 29l135 56z" fill="url(#white)" stroke="#bdbdbd">
+                            </path>
+                        </g>
+                        <use transform="rotate(90,150,150)" xlink:href="#b"></use>
+                    </g>
+                    <use transform="rotate(180,150,150)" xlink:href="#a"></use>
+                </svg>
+            </div>
+            <div class="title-bar">
+                <span>RESIDENT EVIL</span>
+                <div class="subtitle">THE SHADOW LEGACY</div>
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-column-left">
+                <div class="info-item"><label>Name:</label> <input id="char-name" type="text" /></div>
+                <div class="info-item"><label>Age:</label> <input id="char-age" type="number" /></div>
+                <div class="info-item"><label>Birth:</label> <input id="char-birth" type="text" /></div>
+                <div class="info-item"><label>Gender:</label> <input id="char-gender" type="text" /></div>
+                <div class="info-item"><label>Weight:</label> <input id="char-weight" type="text" /></div>
+                <div class="info-item"><label>Height:</label> <input id="char-height" type="text" /></div>
+            </div>
+            <div class="info-column-right">
+                <div class="info-item"><label>Eye:</label> <input id="char-eye" type="text" /></div>
+                <div class="info-item"><label>Hair:</label> <input id="char-hair" type="text" /></div>
+                <div class="info-item"><label>Skin:</label> <input id="char-skin" type="text" /></div>
+                <div class="info-item"><label>Demeanor:</label> <input id="char-demeanor" type="text" /></div>
+                <div class="info-item"><label>Rank:</label> <input id="char-rank" type="text" /></div>
+                <div class="info-item"><label>First Team:</label> <input id="char-first-team" type="text" /></div>
+            </div>
+            <div class="photo-box" id="photo-box-upload">
+                <p>Click to upload photo</p>
+                <input accept="image/*" id="photo-upload-input" style="display: none;" type="file" />
+            </div>
+        </div>
+        <div class="section-title attributes-section">
+            <svg class="icon" viewbox="0 0 24 24">
+                <path
+                    d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-.001-3.79l2.848 1.5-1.127-3.11 2.584-2.02-3.26-.27L12 9.21l-1.044-3.1L7.696 11.2l-3.26.27 2.584 2.02-1.127 3.11 2.848-1.5z">
+                </path>
+            </svg>
+            Attributes
+        </div>
+        <div class="section-content">
+            <div class="attribute-column">
+                <div class="column-header physical-header">
+                    <svg class="icon" viewbox="0 0 24 24">
+                        <path
+                            d="M12 2c-3.31 0-6 2.69-6 6v4c0 3.31 2.69 6 6 6s6-2.69 6-6V8c0-3.31-2.69-6-6-6zm0 18c-2.21 0-4-1.79-4-4V8c0-2.21 1.79-4 4-4s4 1.79 4 4v6c0 2.21-1.79 4-4 4zM10 20v2h4v-2h-4z">
+                        </path>
+                    </svg>
+                    Physical <input class="total-checkbox" type="checkbox" />
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Strength:</label>
+                        <!-- <span id="strengthLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextStrengthLevelCostDisplay"></span>
+                        <span class="dots" data-group="strength">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Dexterity:</label>
+                        <!-- <span id="dexterityLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextDexterityLevelCostDisplay"></span>
+                        <span class="dots" data-group="dexterity">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Stamina:</label>
+                        <!-- <span id="staminaLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextStaminaLevelCostDisplay"></span>
+                        <span class="dots" data-group="stamina">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="attribute-column">
+                <div class="column-header social-header">
+                    <svg class="icon" viewbox="0 0 24 24">
+                        <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-4 0c1.66 0 2.99-1.34 2.99-3S13.66 5 12 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-4 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zM2 17v3h20v-3c0-2.2-4.47-4-9-4s-9 1.8-9 4z">
+                        </path>
+                    </svg>
+                    Social <input class="total-checkbox" type="checkbox" />
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Charisma:</label>
+                        <!-- <span id="charismaLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextCharismaLevelCostDisplay"></span>
+                        <span class="dots" data-group="charisma">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Manipulation:</label>
+                        <!-- <span id="manipulationLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextManipulationLevelCostDisplay"></span>
+                        <span class="dots" data-group="manipulation">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Appearance:</label>
+                        <!-- <span id="appearanceLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextAppearanceLevelCostDisplay"></span>
+                        <span class="dots" data-group="appearance">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="attribute-column">
+                <div class="column-header mental-header">
+                    <svg class="icon" viewbox="0 0 24 24">
+                        <path
+                            d="M12 2c-3.86 0-7 3.14-7 7 0 3.78 3.42 6.8 7 11.8 3.58-5 7-8.02 7-11.8 0-3.86-3.14-7-7-7zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z">
+                        </path>
+                    </svg>
+                    Mental <input class="total-checkbox" type="checkbox" />
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Perception:</label>
+                        <!-- <span id="perceptionLevelDisplay" class="ml-2" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextPerceptionLevelCostDisplay"></span>
+                        <span class="dots" data-group="perception">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Intelligence:</label>
+                        <!-- <span id="intelligenceLevelDisplay" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextIntelligenceLevelCostDisplay"></span>
+                        <span class="dots" data-group="intelligence">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+                <div class="attribute-item">
+                    <div>
+                        <label>Wits:</label>
+                        <!-- <span id="witsLevelDisplay" style="font-size:1em; color: inherit;">0</span> -->
+                    </div>
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextWitsLevelCostDisplay"></span>
+                        <span class="dots" data-group="wits">
+                            <input data-index="1" type="checkbox" />
+                            <input data-index="2" type="checkbox" />
+                            <input data-index="3" type="checkbox" />
+                            <input data-index="4" type="checkbox" />
+                            <input data-index="5" type="checkbox" />
+                            <input data-index="6" type="checkbox" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-title abilities-section">
+            <svg class="icon" viewbox="0 0 24 24">
+                <path
+                    d="M11 2v10h2V2h-2zm-3 18c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-3c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v3zm10-14c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v1zm-7 14c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-3c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v3zm7-14c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v1z">
+                </path>
+            </svg>
+            Abilities
+        </div>
+        <div class="section-content">
+            <div class="ability-column">
+                <div class="column-header talent-header">
+                    <svg class="icon" viewbox="0 0 24 24">
+                        <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                        </path>
+                    </svg>
+                    Talent <input class="total-checkbox" type="checkbox" />
+                </div>
+                <div class="ability-item">
+                    <label>Alertness</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextAlertnessLevelCostDisplay"></span>
+                        <span class="dots" data-group="alertness"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Athletics</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextAthleticsLevelCostDisplay"></span>
+                        <span class="dots" data-group="athletics"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Brawl</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextBrawlLevelCostDisplay"></span>
+                        <span class="dots" data-group="brawl"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Dodge</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextDodgeLevelCostDisplay"></span>
+                        <span class="dots" data-group="dodge"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Empathy</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextEmpathyLevelCostDisplay"></span>
+                        <span class="dots" data-group="empathy"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Expression</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextExpressionLevelCostDisplay"></span>
+                        <span class="dots" data-group="expression"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Intimidation</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextIntimidationLevelCostDisplay"></span>
+                        <span class="dots" data-group="intimidation"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Leadership</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextLeadershipLevelCostDisplay"></span>
+                        <span class="dots" data-group="leadership"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Streetwise</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextStreetwiseLevelCostDisplay"></span>
+                        <span class="dots" data-group="streetwise"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Subterfuge</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextSubterfugeLevelCostDisplay"></span>
+                        <span class="dots" data-group="subterfuge"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+            </div>
+            <div class="ability-column">
+                <div class="column-header skill-header">
+                    <svg class="icon" viewbox="0 0 24 24">
+                        <path
+                            d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.42-.35-.86-.65-1.33-.9l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.52.44l-.38 2.65c-.47.25-.91.55-1.33.9l-2.49-1c-.22-.08-.49 0-.61.22l2 3.46c-.12.22-.07.49.12.64l2.11 1.65c-.04.32-.07.64-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.42.35.86.65 1.33.9l.38 2.65c.06.26.27.44.52.44h4c.25 0 .46-.18.52-.44l-.38-2.65c-.47-.25-.91-.55-1.33-.9l2.49 1c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z">
+                        </path>
+                    </svg>
+                    Skill <input class="total-checkbox" type="checkbox" />
+                </div>
+                <div class="ability-item">
+                    <label>Animal Ken</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextAnimalkenLevelCostDisplay"></span>
+                        <span class="dots" data-group="animalken"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Drive</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextDriveLevelCostDisplay"></span>
+                        <span class="dots" data-group="drive"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Etiquette</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextEtiquetteLevelCostDisplay"></span>
+                        <span class="dots" data-group="etiquette"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Firearms</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextFirearmsLevelCostDisplay"></span>
+                        <span class="dots" data-group="firearms"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Melee</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextMeleeLevelCostDisplay"></span>
+                        <span class="dots" data-group="melee"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Performance</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextPerformanceLevelCostDisplay"></span>
+                        <span class="dots" data-group="performance"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Repair</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextRepairLevelCostDisplay"></span>
+                        <span class="dots" data-group="repair"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Security</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextSecurityLevelCostDisplay"></span>
+                        <span class="dots" data-group="security"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Stealth</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextStealthLevelCostDisplay"></span>
+                        <span class="dots" data-group="stealth"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Survival</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextSurvivalLevelCostDisplay"></span>
+                        <span class="dots" data-group="survival"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+            </div>
+            <div class="ability-column">
+                <div class="column-header knowledge-header">
+                    <svg class="icon" viewbox="0 0 24 24">
+                        <path
+                            d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8zm0 3h8v2h-8zm0-6h8v2h-8z">
+                        </path>
+                    </svg>
+                    Knowledge <input class="total-checkbox" type="checkbox" />
+                </div>
+                <div class="ability-item">
+                    <label>Bureaucracy</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextBureaucracyLevelCostDisplay"></span>
+                        <span class="dots" data-group="bureaucracy"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Computer</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextComputerLevelCostDisplay"></span>
+                        <span class="dots" data-group="computer"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Enigmas</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextEnigmasLevelCostDisplay"></span>
+                        <span class="dots" data-group="enigmas"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Investigation</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextInvestigationLevelCostDisplay"></span>
+                        <span class="dots" data-group="investigation"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Law</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextLawLevelCostDisplay"></span>
+                        <span class="dots" data-group="law"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Linguistics</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextLinguisticsLevelCostDisplay"></span>
+                        <span class="dots" data-group="linguistics"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Medicine</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextMedicineLevelCostDisplay"></span>
+                        <span class="dots" data-group="medicine"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Occult</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextOccultLevelCostDisplay"></span>
+                        <span class="dots" data-group="occult"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Politics</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextPoliticsLevelCostDisplay"></span>
+                        <span class="dots" data-group="politics"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+                <div class="ability-item">
+                    <label>Science</label>
+                    <input class="text-input-line ability-text-input" type="text" />
+                    <div class="dots-and-cost-container">
+                        <span class="next-level-cost-display" id="nextScienceLevelCostDisplay"></span>
+                        <span class="dots" data-group="science"><input data-index="1" type="checkbox" /><input
+                                data-index="2" type="checkbox" /><input data-index="3" type="checkbox" /><input
+                                data-index="4" type="checkbox" /><input data-index="5" type="checkbox" /><input
+                                data-index="6" type="checkbox" /></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-title advantages-section">
+            <svg class="icon" viewbox="0 0 24 24">
+                <path
+                    d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z">
+                </path>
+            </svg>
+            Advantages
+        </div>
+        <div class="section-content">
+            <div class="advantage-column">
+                <div class="column-header other-traits-header">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M17.65 6.35c-1.63-1.63-3.99-2.07-6.52-1.34L12 5.09l-1.13-.37c-.74-.24-1.5-.33-2.27-.33-2.61 0-4.99 1.15-6.61 3.22L2 6.01c-.42.54-.34 1.29.21 1.71l.01.01.2.16c.3.25.43.64.33 1.02-.1.38-.39.69-.76.84L2.09 10.3c-.55.22-.92.73-.92 1.34V20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-7.36c0-.61-.37-1.12-.92-1.34l-1.31-.53c-.37-.15-.66-.46-.76-.84-.1-.38.03-.77.33-1.02l.2-.16.01-.01c.55-.42.63-1.17.21-1.71l-1.28-1.28zM19 12c-1.38 0-2.5-1.12-2.5-2.5S17.62 7 19 7s2.5 1.12 2.5 2.5S20.38 12 19 12z" />
+                    </svg>
+                    Traits
+                </div>
+                <div id="other-traits-container">
+                    <div class="trait-item"><label>Trait 1:</label> <input type="text" class="text-input-line"> <button
+                            type="button" class="delete-field-btn">X</button></div>
+                    <div class="trait-item"><label>Trait 2:</label> <input type="text" class="text-input-line"> <button
+                            type="button" class="delete-field-btn">X</button></div>
+                    <div class="trait-item"><label>Trait 3:</label> <input type="text" class="text-input-line"> <button
+                            type="button" class="delete-field-btn">X</button></div>
+                    <div class="trait-item"><label>Trait 4:</label> <input type="text" class="text-input-line"> <button
+                            type="button" class="delete-field-btn">X</button></div>
+                    <div class="trait-item"><label>Trait 5:</label> <input type="text" class="text-input-line"> <button
+                            type="button" class="delete-field-btn">X</button></div>
+                </div>
+                <button id="add-other-trait-btn" class="add-field-btn">Add New Trait</button>
+            </div>
+
+            <div class="advantage-column">
+                <div class="column-header backgrounds-header">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                    </svg>
+                    Backgrounds <input type="checkbox" class="total-checkbox">
+                </div>
+                <div id="backgrounds-container">
+                    <div class="background-item"><label>Background 1:</label> <input type="text"
+                            class="text-input-line"> <button type="button" class="delete-field-btn">X</button></div>
+                    <div class="background-item"><label>Background 2:</label> <input type="text"
+                            class="text-input-line"> <button type="button" class="delete-field-btn">X</button></div>
+                    <div class="background-item"><label>Background 3:</label> <input type="text"
+                            class="text-input-line"> <button type="button" class="delete-field-btn">X</button></div>
+                    <div class="background-item"><label>Background 4:</label> <input type="text"
+                            class="text-input-line"> <button type="button" class="delete-field-btn">X</button></div>
+                    <div class="background-item"><label>Background 5:</label> <input type="text"
+                            class="text-input-line"> <button type="button" class="delete-field-btn">X</button></div>
+                </div>
+                <button id="add-background-btn" class="add-field-btn">Add New Background</button>
+            </div>
+
+            <div class="advantage-column">
+                <div class="column-header virtues-header">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                    Virtues <input type="checkbox" class="total-checkbox">
+                </div>
+                <div class="virtue-item">
+                    <label>Conscience:</label>
+                    <!-- <span id="conscienceLevelDisplay" style="font-size:1em; color: inherit;">0</span> -->
+                    <span class="virtue-dots" data-group="conscience">
+                        <input type="checkbox" data-index="1">
+                        <input type="checkbox" data-index="2">
+                        <input type="checkbox" data-index="3">
+                        <input type="checkbox" data-index="4">
+                        <input type="checkbox" data-index="5">
+                        <input type="checkbox" data-index="6">
+                    </span>
+                </div>
+                <div class="virtue-item">
+                    <label>Self-control:</label>
+                    <!-- <span id="selfcontrolLevelDisplay" style="font-size:1em; color: inherit;">0</span> -->
+                    <span class="virtue-dots" data-group="selfcontrol">
+                        <input type="checkbox" data-index="1">
+                        <input type="checkbox" data-index="2">
+                        <input type="checkbox" data-index="3">
+                        <input type="checkbox" data-index="4">
+                        <input type="checkbox" data-index="5">
+                        <input type="checkbox" data-index="6">
+                    </span>
+                </div>
+                <div class="virtue-item">
+                    <label>Courage:</label>
+                    <!-- <span id="courageLevelDisplay" style="font-size:1em; color: inherit;">0</span> -->
+                    <span class="virtue-dots" data-group="courage">
+                        <input type="checkbox" data-index="1">
+                        <input type="checkbox" data-index="2">
+                        <input type="checkbox" data-index="3">
+                        <input type="checkbox" data-index="4">
+                        <input type="checkbox" data-index="5">
+                        <input type="checkbox" data-index="6">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="merits-flaws-section">
+            <div class="section-title">
+                <svg class="icon" viewbox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                    </path>
+                </svg>
+                Merits &amp; Flaws
+            </div>
+            <div class="merits-flaws-content">
+                <div class="merits-sub-section">
+                    <div class="sub-section-title">Merits</div>
+                    <div id="merits-container">
+                        <div class="merit-item"><label>Merit 1:</label> <input class="text-input-line" type="text" />
+                            <button class="delete-field-btn" type="button">X</button>
+                        </div>
+                        <div class="merit-item"><label>Merit 2:</label> <input class="text-input-line" type="text" />
+                            <button class="delete-field-btn" type="button">X</button>
+                        </div>
+                        <div class="merit-item"><label>Merit 3:</label> <input class="text-input-line" type="text" />
+                            <button class="delete-field-btn" type="button">X</button>
+                        </div>
+                    </div>
+                    <button class="add-field-btn" id="add-merit-btn">Add New Merit</button>
+                </div>
+                <div class="flaws-sub-section">
+                    <div class="sub-section-title">Flaws</div>
+                    <div id="flaws-container">
+                        <div class="flaw-item"><label>Flaw 1:</label> <input class="text-input-line" type="text" />
+                            <button class="delete-field-btn" type="button">X</button>
+                        </div>
+                        <div class="flaw-item"><label>Flaw 2:</label> <input class="text-input-line" type="text" />
+                            <button class="delete-field-btn" type="button">X</button>
+                        </div>
+                        <div class="flaw-item"><label>Flaw 3:</label> <input class="text-input-line" type="text" />
+                            <button class="delete-field-btn" type="button">X</button>
+                        </div>
+                    </div>
+                    <button class="add-field-btn" id="add-flaw-btn">Add New Flaw</button>
+                </div>
+            </div>
+        </div>
+        <div class="health-equipment-combined-section">
+            <div class="health-armor-box">
+                <div class="health-title-standalone">Wounds &amp; Status</div> <!-- Updated title -->
+                <div class="health-item-new" data-wound-level="bruised"><label>Bruised</label> <span
+                        class="penalty"></span> <input class="health-status-input" type="text" /> <input data-state="0"
+                        data-state-manual="0" type="checkbox" /></div>
+                <div class="health-item-new" data-wound-level="hurt"><label>Hurt</label> <span class="penalty">-1</span>
+                    <input class="health-status-input" type="text" /> <input data-state="0" data-state-manual="0"
+                        type="checkbox" />
+                </div>
+                <div class="health-item-new" data-wound-level="injured"><label>Injured</label> <span
+                        class="penalty">-1</span> <input class="health-status-input" type="text" /> <input
+                        data-state="0" data-state-manual="0" type="checkbox" /></div>
+                <div class="health-item-new" data-wound-level="wounded"><label>Wounded</label> <span
+                        class="penalty">-2</span> <input class="health-status-input" type="text" /> <input
+                        data-state="0" data-state-manual="0" type="checkbox" /></div>
+                <div class="health-item-new" data-wound-level="mauled"><label>Mauled</label> <span
+                        class="penalty">-2</span> <input class="health-status-input" type="text" /> <input
+                        data-state="0" data-state-manual="0" type="checkbox" /></div>
+                <div class="health-item-new" data-wound-level="crippled"><label>Crippled</label> <span
+                        class="penalty">-5</span> <input class="health-status-input" type="text" /> <input
+                        data-state="0" data-state-manual="0" type="checkbox" /></div>
+                <div class="health-item-new" data-wound-level="incapacitated"><label>Incapacitated</label> <span
+                        class="penalty"></span> <input class="health-status-input" type="text" /> <input data-state="0"
+                        data-state-manual="0" type="checkbox" /></div>
+                <!-- NEW CONTAINER FOR SIDE-BY-SIDE STRAIN & TEMP STATUS -->
+                <div class="strain-status-row-container">
+                    <!-- NEW STRAIN SECTION -->
+                    <div class="strain-section-in-health">
+                        <label>Current Strain:</label>
+                        <input class="text-input-line" id="current-strain" type="number" value="0" />
+                    </div>
+                    <!-- NEW TEMPORARY STATUS EFFECTS SECTION -->
+                    <div class="temp-status-section">
+                        <label>Temporary Status Effects:</label>
+                        <textarea class="text-input-line" id="temp-status-textarea"
+                            placeholder="e.g., Poison Immunity, +1 Soak"></textarea>
+                    </div>
+                </div>
+                <div class="armor-section-in-health">
+                    <label>Armor:</label>
+                    <div class="equipment-item-row">
+                        <input class="input-armor-name" placeholder="" type="text" />
+                        <label>Bonus:</label> <input class="input-short" type="number" />
+                        <label>Penalty:</label> <input class="input-short" type="text" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Weight:</label> <input class="input-medium" type="text" />
+                        <label>Special Properties:</label> <input class="input-extra-long" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-box-weapons">
+                <div class="section-title">Equipment</div>
+                <div class="equipment-item-group">
+                    <div class="equipment-item-row">
+                        <svg class="weapon-row-icon pistol-icon" viewbox="0 0 24 24">
+                            <path
+                                d="M22 10h-2V7h-4V5h-2V3h-2v2h-2v2h-4v3H2v12h12v-2h8v-8zM12 5h2v2h-2V5zm0 4h2v2h-2V9zM6 15c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                            </path>
+                        </svg>
+                        <label>Weapon:</label> <input class="input-long" placeholder="" type="text" />
+                        <label>Dif:</label> <input class="input-short" type="number" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Damage:</label> <input class="input-medium" type="text" />
+                        <label>Weight:</label> <input class="input-medium" type="text" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Special Properties:</label> <input class="input-extra-long" type="text" />
+                    </div>
+                </div>
+                <div class="equipment-item-group">
+                    <div class="equipment-item-row">
+                        <svg class="weapon-row-icon pistol-icon" viewbox="0 0 24 24">
+                            <path
+                                d="M22 10h-2V7h-4V5h-2V3h-2v2h-2v2h-4v3H2v12h12v-2h8v-8zM12 5h2v2h-2V5zm0 4h2v2h-2V9zM6 15c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                            </path>
+                        </svg>
+                        <label>Weapon:</label> <input class="input-long" placeholder="" type="text" />
+                        <label>Dif:</label> <input class="input-short" type="number" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Damage:</label> <input class="input-medium" type="text" />
+                        <label>Weight:</label> <input class="input-medium" type="text" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Special Properties:</label> <input class="input-extra-long" type="text" />
+                    </div>
+                </div>
+                <div class="equipment-item-group">
+                    <div class="equipment-item-row">
+                        <svg class="weapon-row-icon melee-icon" viewbox="0 0 24 24">
+                            <path
+                                d="M20 2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2H2v-2h2v-2h2v-2h2v-2h2V8h2V6h2V4h2V2h2zm-8 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                            </path>
+                        </svg>
+                        <label>Weapon:</label> <input class="input-long" placeholder="Melee Weapon" type="text" />
+                        <label>Dif:</label> <input class="input-short" type="number" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Damage:</label> <input class="input-medium" type="text" />
+                        <label>Weight:</label> <input class="input-medium" type="text" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Special Properties:</label> <input class="input-extra-long" type="text" />
+                    </div>
+                </div>
+                <!-- Special Weapon Section -->
+                <div class="equipment-item-group">
+                    <div class="equipment-item-row">
+                        <svg class="weapon-row-icon special-weapon-icon" viewbox="0 0 24 24">
+                            <path
+                                d="M12 2c-.55 0-1 .45-1 1v7c0 .55.45 1 1 1s1-.45 1-1V3c0-.55-.45-1-1-1zm-.707 10.793l-3.536 3.536c-.195.195-.195.512 0 .707l.707.707c-.195.195.512.195.707 0l3.536-3.536c-.195-.195-.195-.512 0-.707l-.707-.707c-.195-.195-.512-.195-.707 0zM12 11c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zM16.207 7.793l-3.536-3.536c-.195-.195-.512-.195-.707 0l-.707.707c-.195.195-.195.512 0 .707l3.536 3.536c.195.195.512.195.707 0l.707-.707c-.195-.195.195-.512 0-.707zM21 12c0-.55-.45-1-1-1h-7c-.55 0-1 .45-1 1s.45 1 1 1h7c.55 0 1-.45 1-1zM11.793 16.207l-3.536-3.536c-.195-.195-.512-.195-.707 0l-.707.707c-.195.195-.195.512 0 .707l3.536 3.536c.195.195.512.195.707 0l.707-.707c-.195-.195.195-.512 0-.707z">
+                            </path>
+                        </svg>
+                        <label>Special Weapon:</label> <input class="input-long" placeholder="Special Weapon Name"
+                            type="text" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Damage:</label> <input class="input-medium" type="text" />
+                        <label>Weight:</label> <input class="input-medium" type="text" />
+                        <label>Difficulty:</label> <input class="input-short" type="number" />
+                    </div>
+                    <div class="equipment-item-row">
+                        <label>Special Properties:</label> <input class="input-extra-long" type="text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="herb-usage-section">
+            <div class="section-title">
+                <svg class="icon" viewbox="0 0 24 24">
+                    <path
+                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+                        fill="#ffffff"></path>
+                </svg>
+                Herb Usage
+            </div>
+            <div class="herb-buttons-container">
+                <button class="herb-btn green-btn" data-herb="GG">GG (5 HP)</button>
+                <button class="herb-btn green-blue-btn" data-herb="GB">GB (4 HP, PI)</button>
+                <button class="herb-btn green-btn" data-herb="GGG">GGG (6 HP)</button>
+                <button class="herb-btn green-green-blue-btn" data-herb="GGB">GGB (5 HP, PI)</button>
+                <button class="herb-btn green-green-red-btn" data-herb="GGR">GGR (5 HP, +1S)</button>
+                <button class="herb-btn red-blue-btn" data-herb="RB">RB (4 SP, PI)</button>
+                <button class="herb-btn red-green-blue-btn" data-herb="RGB">RGB (4 HP/SP, +1S, PI)</button>
+            </div>
+            <div class="action-buttons-container">
+                <button class="action-button" id="clear-status-btn">Clear Status Effects</button>
+                <button class="action-button" id="reset-health-btn">Reset All Health</button>
+                <button class="action-button" id="first-aid-spray-btn">First Aid Spray</button>
+                <button class="action-button" id="clear-status-effects-btn">Clear Status Effects</button>
+            </div>
+            <div class="feedback-message" id="feedback-message-area"></div>
+        </div>
+        <div class="inventory-section">
+            <div class="section-title">
+                <svg class="icon" viewbox="0 0 24 24">
+                    <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H9v-2h6v2zm3-4H6v-2h12v2zm0-4H6V8h12v2z">
+                    </path>
+                </svg>
+                Inventory
+            </div>
+            <textarea id="inventory-textarea"
+                placeholder="List your inventory items here, one per line or separated by commas. E.g., GG (2), First Aid Spray"></textarea>
+        </div>
+        <div class="action-buttons-container">
+            <button class="action-button" onclick="exportToJSONFile()">Export JSON</button>
+            <label class="action-button" style="cursor: pointer;">Import JSON
+                <input accept=".json" onchange="importFromJSONFile(event)" style="display: none;" type="file" />
+            </label>
+        </div>
+        <div class="experience-box">
+            <div class="section-title">
+                <svg class="icon" viewbox="0 0 24 24">
+                    <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z">
+                    </path>
+                </svg>
+                Experience
+            </div>
+            <div class="exp-fields-top">
+                <div class="exp-fields-item"><label>Total:</label> <input id="exp-total" readonly="" type="number"
+                        value="0" /></div>
+                <div class="exp-fields-item"><label>Spent:</label> <input id="exp-spent" readonly="" type="number"
+                        value="0" /></div>
+                <div class="exp-fields-item">
+                    <label>Available:</label> <input id="exp-available" type="number" value="0" />
+                </div>
+            </div>
+            <!-- Removed XP Add/Spend controls based on user request -->
+            <!-- Activity Log -->
+            <label for="activityLog"
+                style="font-weight: bold; display: block; margin-bottom: 5px; text-align: center; text-shadow: 0 0 2px #ffffff, 0 0 2px #ffffff;">Activity
+                Log</label>
+            <textarea class="resize-y" id="activityLog" placeholder="Your activity will be logged here..."
+                style="height: 120px;"></textarea>
+            <button class="utility-button" id="clearLogButton">Clear Log</button>
+            <button class="utility-button" disabled="" id="undoLastChangeButton">Undo Last Change (XP)</button>
+            <!-- NOTE FROM VLADO: Tva e mnogo grozno i hardcode-nato. Ideally trqbva da se vidi kak se handle-va updatevaneto na drugite promenlivi (primerno strengthlevel ili availablexp) i da se napravi sushtoto
+      za vsichki textovi poleta kato Name, Age, etc. Moje bi shte e dobre da se napravi nqkakyv object kakto e allAttributes i toj da se save-a kato json. -->
+            <button class="utility-button" id="save"
+                onclick="saveCharacter(document.getElementById('char-name').value, 'myCharacter.txt', 'text/plain')">Save</button>
+            <!-- Centralized Message Box for notifications -->
+            <div class="message-box-overlay" id="messageBox"></div>
+            <script>
+                // Global XP variables (initialized from DOM on load)
+                let availableXP = 0;
+                let spentXP = 0;
+                let totalXP = 0;
+
+                // Attributes levels (9 total)
+                let strengthLevel = 0;
+                let dexterityLevel = 0;
+
+                let staminaLevel = 0;
+                let charismaLevel = 0;
+                let manipulationLevel = 0;
+                let appearanceLevel = 0;
+                let perceptionLevel = 0;
+                let intelligenceLevel = 0;
+                let witsLevel = 0;
+
+                // Abilities levels (30 total) - dynamic
+                const abilities = {}; // Will store levels like abilities.athletics = 0, abilities.acrobatics = 0, etc.
+
+                // Virtues levels (3 total)
+                let conscienceLevel = 0;
+                let selfcontrolLevel = 0;
+                let courageLevel = 0;
+
+                const MAX_LEVEL = 6; // Max level for all attributes, abilities, and virtues
+
+                // Cost definitions: Index 0 is unused, index N is cost to reach level N from N-1
+                // For example, attributeCostPattern[1] is the cost to go from Level 0 to Level 1
+                const attributeCostPattern = [0, 5, 10, 15, 20, 25, 30];
+                const abilityCostPattern = [0, 3, 6, 9, 12, 15, 18];
+
+                // Define all attributes and their associated elements with direct getters/setters
+                const allAttributes = [
+                    { name: "Strength", levelGetter: () => strengthLevel, levelSetter: (level) => { strengthLevel = level; }, displayId: 'strengthLevelDisplay', costDisplayId: 'nextStrengthLevelCostDisplay', containerGroup: 'strength', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Dexterity", levelGetter: () => dexterityLevel, levelSetter: (level) => { dexterityLevel = level; }, displayId: 'dexterityLevelDisplay', costDisplayId: 'nextDexterityLevelCostDisplay', containerGroup: 'dexterity', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Stamina", levelGetter: () => staminaLevel, levelSetter: (level) => { staminaLevel = level; }, displayId: 'staminaLevelDisplay', costDisplayId: 'nextStaminaLevelCostDisplay', containerGroup: 'stamina', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Charisma", levelGetter: () => charismaLevel, levelSetter: (level) => { charismaLevel = level; }, displayId: 'charismaLevelDisplay', costDisplayId: 'nextCharismaLevelCostDisplay', containerGroup: 'charisma', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Manipulation", levelGetter: () => manipulationLevel, levelSetter: (level) => { manipulationLevel = level; }, displayId: 'manipulationLevelDisplay', costDisplayId: 'nextManipulationLevelCostDisplay', containerGroup: 'manipulation', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Appearance", levelGetter: () => appearanceLevel, levelSetter: (level) => { appearanceLevel = level; }, displayId: 'appearanceLevelDisplay', costDisplayId: 'nextAppearanceLevelCostDisplay', containerGroup: 'appearance', costArray: attributeCostPattern, type: 'attribute' }, // Re-added!
+                    { name: "Perception", levelGetter: () => perceptionLevel, levelSetter: (level) => { perceptionLevel = level; }, displayId: 'perceptionLevelDisplay', costDisplayId: 'nextPerceptionLevelCostDisplay', containerGroup: 'perception', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Intelligence", levelGetter: () => intelligenceLevel, levelSetter: (level) => { intelligenceLevel = level; }, displayId: 'intelligenceLevelDisplay', costDisplayId: 'nextIntelligenceLevelCostDisplay', containerGroup: 'intelligence', costArray: attributeCostPattern, type: 'attribute' },
+                    { name: "Wits", levelGetter: () => witsLevel, levelSetter: (level) => { witsLevel = level; }, displayId: 'witsLevelDisplay', costDisplayId: 'nextWitsLevelCostDisplay', containerGroup: 'wits', costArray: attributeCostPattern, type: 'attribute' },
+                ];
+
+                // Define all abilities (30 total) - Mapped to their data-group names
+                const allAbilitiesList = [
+                    "alertness", "athletics", "brawl", "dodge", "empathy", "expression", "intimidation", "leadership", "streetwise", "subterfuge",
+                    "animalken", "drive", "etiquette", "firearms", "melee", "performance", "repair", "security", "stealth", "survival",
+                    "bureaucracy", "computer", "enigmas", "investigation", "law", "linguistics", "medicine", "occult", "politics", "science"
+                ];
+
+                // Initialize ability levels to 0 and map to their display elements
+                const allAbilities = allAbilitiesList.map(name => {
+                    const normalizedName = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+                    abilities[`${normalizedName}Level`] = 0; // Initialize global ability level vars
+                    return {
+                        name: name.charAt(0).toUpperCase() + name.slice(1).replace(/([A-Z])/g, ' $1'), // Convert camelCase to Title Case for display
+                        levelGetter: () => abilities[`${normalizedName}Level`],
+                        levelSetter: (level) => { abilities[`${normalizedName}Level`] = level; },
+                        costDisplayId: `next${normalizedName.charAt(0).toUpperCase() + normalizedName.slice(1)}LevelCostDisplay`, // Add costDisplayId for abilities
+                        containerGroup: normalizedName,
+                        costArray: abilityCostPattern,
+                        type: 'ability'
+                    };
+                });
+
+
+                // Define all virtues
+                const allVirtues = [
+                    { name: "Conscience", levelGetter: () => conscienceLevel, levelSetter: (level) => { conscienceLevel = level; }, displayId: 'conscienceLevelDisplay', containerGroup: 'conscience', type: 'virtue' },
+                    { name: "Self-control", levelGetter: () => selfcontrolLevel, levelSetter: (level) => { selfcontrolLevel = level; }, displayId: 'selfcontrolLevelDisplay', containerGroup: 'selfcontrol', type: 'virtue' },
+                    { name: "Courage", levelGetter: () => courageLevel, levelSetter: (level) => { courageLevel = level; }, displayId: 'courageLevelDisplay', containerGroup: 'courage', type: 'virtue' },
+                ];
+
+
+                // DOM references for XP fields
+                const expTotalInput = document.getElementById('exp-total');
+                const expSpentInput = document.getElementById('exp-spent');
+                const expAvailableInput = document.getElementById('exp-available'); // Now editable
+
+                // DOM references for healing section elements
+                const currentStrainInput = document.getElementById('current-strain');
+                const temporaryStatusEffectsTextarea = document.getElementById('temp-status-textarea');
+                const inventoryTextarea = document.getElementById('inventory-textarea');
+                const feedbackMessageArea = document.getElementById('feedback-message-area'); // Existing element for messages
+
+                // Activity log
+                const activityLog = document.getElementById('activityLog'); // Re-purposed briefing-textarea
+                const clearLogButton = document.getElementById('clearLogButton');
+                const undoButton = document.getElementById('undoLastChangeButton');
+
+
+                let messageTimer; // To manage message display duration
+
+                // Define WOUND_PROPERTIES here, inside the scope where DOM is guaranteed to be ready
+                let WOUND_PROPERTIES;
+
+                // Ordered list of wound levels to iterate through for damage application/healing
+                const WOUND_LEVELS_ORDERED = ['bruised', 'hurt', 'injured', 'wounded', 'mauled', 'crippled', 'incapacitated'];
+
+                // UNDO FUNCTIONALITY
+                const undoStack = [];
+                const MAX_UNDO_STATES = 10; // Increased to 10 undo steps
+
+
+                /**
+                 * Updates the enabled/disabled state of the undo button.
+                 */
+                function updateUndoButtonState() {
+                    undoButton.disabled = undoStack.length === 0;
+                }
+
+                /**
+                 * Logs an activity message to the activity log textarea.
+                 * @param {string} message - The message to log.
+                 */
+                function logActivity(message) {
+                    const now = new Date();
+                    const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                    activityLog.value += `[${timestamp}] ${message}\n`;
+                    activityLog.scrollTop = activityLog.scrollHeight; // Scroll to bottom to show new entry
+                }
+
+                /**
+                 * Captures the current state of XP and all attribute/ability levels
+                 * and pushes it onto the undo stack.
+                 */
+                function saveStateForUndo() {
+                    const skillLevelsSnapshot = {};
+                    allAttributes.forEach(attr => {
+                        skillLevelsSnapshot[attr.containerGroup] = attr.levelGetter();
+                    });
+                    allAbilities.forEach(ability => {
+                        skillLevelsSnapshot[ability.containerGroup] = ability.levelGetter();
+                    });
+
+                    const state = {
+                        availableXP: availableXP,
+                        spentXP: spentXP,
+                        skillLevels: skillLevelsSnapshot
+                    };
+
+                    if (undoStack.length >= MAX_UNDO_STATES) {
+                        undoStack.shift(); // Remove the oldest state
+                    }
+                    undoStack.push(state);
+                    console.log("State saved for undo. Stack size:", undoStack.length);
+                    updateUndoButtonState();
+                }
+
+                /**
+                 * Restores the previous state from the undo stack.
+                 */
+                function undoLastChange() {
+                    if (undoStack.length === 0) {
+                        showMessage("No changes to undo.", "info");
+                        return;
+                    }
+
+                    const lastState = undoStack.pop();
+                    availableXP = lastState.availableXP;
+                    spentXP = lastState.spentXP;
+
+                    allAttributes.forEach(attr => {
+                        attr.levelSetter(lastState.skillLevels[attr.containerGroup]);
+                    });
+                    allAbilities.forEach(ability => {
+                        ability.levelSetter(lastState.skillLevels[ability.containerGroup]);
+                    });
+
+                    updateExperienceFields();
+                    renderAllSkillDots();
+                    logActivity('Undid last XP-spending change.');
+                    showMessage("Last change undone.", "success");
+                    updateUndoButtonState();
+                }
+
+
+                // Function to update XP fields and recalculate total
+                function updateExperienceFields() {
+                    // When availableXP is changed manually, totalXP is updated
+                    // When spentXP is changed by level up, totalXP is updated, and availableXP decreases
+                    expAvailableInput.value = availableXP; // Ensure input reflects internal state
+                    expSpentInput.value = spentXP;
+                    totalXP = availableXP + spentXP;
+                    expTotalInput.value = totalXP;
+                }
+
+                // Function to display temporary feedback messages (adapted to use existing feedbackMessageArea)
+                function showMessage(message, type = 'info', duration = 3000) {
+                    // Use feedbackMessageArea as the primary message display
+                    feedbackMessageArea.textContent = message;
+                    feedbackMessageArea.className = 'feedback-message message-box-overlay show'; // Apply common classes
+
+                    // Add type-specific classes for styling
+                    feedbackMessageArea.classList.remove('success', 'error', 'info'); // Clear previous types
+                    if (type === 'success') {
+                        feedbackMessageArea.classList.add('success');
+                    } else if (type === 'error') {
+                        feedbackMessageArea.classList.add('error');
+                    } else { // Default to info
+                        feedbackMessageArea.classList.add('info');
+                    }
+
+                    // Clear any existing timer and set a new one
+                    clearTimeout(messageTimer);
+                    messageTimer = setTimeout(() => {
+                        feedbackMessageArea.classList.remove('show');
+                        // Remove type classes after fading out
+                        setTimeout(() => {
+                            feedbackMessageArea.classList.remove('success', 'error', 'info');
+                            feedbackMessageArea.textContent = '';
+                        }, 300); // Allow fade-out transition to complete before clearing content/classes
+                    }, duration);
+                }
+
+
+                /**
+                 * Checks and consumes an item from inventory.
+                 * Handles quantities (e.g., "ItemName (X)" -> "ItemName (X-1)").
+                 * Preserves newlines and other content on the line.
+                 * @param {string} item - The exact name of the item to consume (e.g., "GG", "First Aid Spray").
+                 * @returns {boolean} - True if the item was found and consumed, false otherwise.
+                 */
+                function checkAndConsumeItem(item) {
+                    console.log(`[Inventory] Attempting to consume: "${item}"`);
+                    let inventoryContent = inventoryTextarea.value;
+                    let lines = inventoryContent.split('\n');
+                    let foundAndConsumed = false;
+
+                    // Escape special characters in the item name for the regex, then trim
+                    // This ensures items like "First Aid Spray" work correctly
+                    const escapedItem = item.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+                    // Regex to find the item and its optional quantity within any part of a line.
+                    // It looks for a word boundary before the item name and after, or start/end of string.
+                    // It's more forgiving about surrounding text.
+                    const itemRegex = new RegExp(`(\\b|^)(${escapedItem})(?:\\s*\\((\\d+)\\))?(\\b|$)`, 'i');
+
+                    for (let i = 0; i < lines.length; i++) {
+                        let line = lines[i];
+                        console.log(`[Inventory] Checking line ${i}: "${line}"`);
+                        const match = line.match(itemRegex);
+
+                        if (match) {
+                            // match[0]: The full matched substring (e.g., " GG (2)" or "GG")
+                            // match[1]: Pre-item boundary/start (e.g., " " or "")
+                            // match[2]: The item name itself (e.g., "GG")
+                            // match[3]: The numerical quantity (e.g., "2" or undefined)
+                            // match[4]: Post-item boundary/end (e.g., " " or "")
+
+                            const matchedItemFullString = match[0]; // The exact string that matched in the line
+                            const matchedItemName = match[2];
+                            let currentQuantity = match[3] ? parseInt(match[3]) : 1;
+
+                            console.log(`[Inventory] Match found: Item="${matchedItemName}", Quantity=${currentQuantity}, Full Match="${matchedItemFullString}"`);
+
+                            if (currentQuantity > 1) {
+                                currentQuantity--;
+                                const newEntryString = `${matchedItemName} (${currentQuantity})`;
+                                // Replace only the matched item part with the new quantity
+                                lines[i] = line.replace(matchedItemFullString, newEntryString);
+                                logActivity(`Consumed one "${item}". Inventory updated to "${newEntryString}".`);
+                            } else {
+                                // Quantity is 1 or no quantity was specified. Remove the entire item instance.
+                                // Replace the full matched item string with an empty string.
+                                lines[i] = line.replace(matchedItemFullString, '').trim(); // Trim after replacement
+                                if (lines[i].length === 0) { // If the line became empty after removal
+                                    lines.splice(i, 1); // Remove the empty line from the array
+                                    i--; // Adjust index due to removal
+                                }
+                                logActivity(`Consumed one "${item}". Item removed from inventory.`);
+                            }
+                            foundAndConsumed = true;
+                            break; // Item consumed, exit loop
+                        }
+                    }
+
+                    if (foundAndConsumed) {
+                        // Re-join lines, filtering out any lines that are now completely empty
+                        inventoryTextarea.value = lines.filter(line => line.trim() !== '').join('\n');
+                        console.log("[Inventory] Final inventory state:", inventoryTextarea.value);
+                        return true;
+                    }
+                    console.log(`[Inventory] Item "${item}" not found in inventory.`);
+                    showMessage(`You do not have "${item}" in your inventory.`, 'error');
+                    return false;
+                }
+
+
+                /**
+                 * Updates a single checkbox's visual state based on its `data-state` attribute.
+                 * @param {HTMLElement} checkbox - The checkbox element.
+                 */
+                function updateCheckboxVisuals(checkbox) {
+                    if (!checkbox) {
+                        console.warn("Attempted to update visuals on a null checkbox.");
+                        return;
+                    }
+                    const state = parseInt(checkbox.dataset.state || '0'); // Get the visual state (0, 1, or 2)
+                    checkbox.classList.remove('crossed-out', 'filled');
+                    checkbox.checked = false; // Default to unchecked for visual consistency
+
+                    if (state === 1) {
+                        checkbox.classList.add('crossed-out');
+                    } else if (state === 2) {
+                        checkbox.classList.add('filled');
+                        checkbox.checked = true; // Visually check the box when filled
+                    }
+                }
+
+                /**
+                 * Calculates the damage points induced by current strain.
+                 * @returns {number} The total strain damage points.
+                 */
+                function calculateStrainDamagePoints() {
+                    const currentStrain = parseInt(currentStrainInput.value) || 0;
+                    // Each 10 strain points = 1 effective damage point
+                    const strainDamage = Math.floor(currentStrain / 10);
+                    console.log("Calculated Strain Damage Points (from strain input):", strainDamage);
+                    return strainDamage;
+                }
+
+                /**
+                 * Updates the visual states of wound checkboxes based on manual settings and current strain.
+                 * Manual settings are the base, and strain layers on top.
+                 */
+                function updateStrainVisuals() {
+                    const strainDamagePoints = calculateStrainDamagePoints();
+                    let remainingStrainPointsToApply = strainDamagePoints;
+                    console.log(`[Strain Visuals] Applying ${strainDamagePoints} strain damage points.`);
+
+                    // Phase 1: Reset all visual states to match their manual states first
+                    for (const level of WOUND_LEVELS_ORDERED) {
+                        const prop = WOUND_PROPERTIES[level];
+                        if (prop && prop.checkbox) {
+                            // The visual data-state starts by mirroring the manual data-state
+                            prop.checkbox.dataset.state = prop.checkbox.dataset.stateManual;
+                            updateCheckboxVisuals(prop.checkbox); // Apply the visual update based on manual state
+                        }
+                    }
+
+                    // Phase 2: Apply remainingStrainPointsToApply to the visual states (data-state),
+                    // starting from the lowest wound and escalating if possible, without affecting data-state-manual.
+                    for (const level of WOUND_LEVELS_ORDERED) {
+                        if (remainingStrainPointsToApply <= 0) break; // No more strain to apply
+
+                        const prop = WOUND_PROPERTIES[level];
+                        if (!prop || !prop.checkbox) continue;
+
+                        let currentVisualState = parseInt(prop.checkbox.dataset.state);
+
+                        // Logic to apply strain to unmarked or partially marked wounds
+                        if (currentVisualState === 0) { // If currently unmarked visually
+                            if (remainingStrainPointsToApply >= prop.filled_points && prop.filled_points > 0) {
+                                prop.checkbox.dataset.state = '2'; // Fill it due to strain
+                                remainingStrainPointsToApply -= prop.filled_points;
+                                console.log(`  Strain filled ${level}. Remaining strain points: ${remainingStrainPointsToApply}`);
+                            } else if (remainingStrainPointsToApply >= prop.crossed_points && prop.crossed_points > 0) {
+                                prop.checkbox.dataset.state = '1'; // Cross it out due to strain
+                                remainingStrainPointsToApply -= prop.crossed_points;
+                                console.log(`  Strain crossed ${level}. Remaining strain points: ${remainingStrainPointsToApply}`);
+                            }
+                        } else if (currentVisualState === 1) { // If currently crossed out visually (from manual or previous strain)
+                            // Can strain push it to 'filled'?
+                            const pointsToReachFilledFromCrossed = prop.filled_points - prop.crossed_points;
+                            if (pointsToReachFilledFromCrossed > 0 && remainingStrainPointsToApply >= pointsToReachFilledFromCrossed) {
+                                prop.checkbox.dataset.state = '2'; // Fill it due to strain escalation
+                                remainingStrainPointsToApply -= pointsToReachFilledFromCrossed;
+                                console.log(`  Strain escalated ${level} from crossed to filled. Remaining strain points: ${remainingStrainPointsToApply}`);
+                            }
+                        }
+                        // If currentVisualState is 2 (filled), strain cannot increase it further.
+
+                        updateCheckboxVisuals(prop.checkbox); // Apply the new visual state
+                    }
+                }
+
+
+                /**
+                 * Resets only the manual wound checkboxes (`data-state-manual`) to state 0 (unmarked).
+                 * This affects ALL wound checkboxes including Incapacitated.
+                 */
+                function resetManualWoundCheckboxes() {
+                    for (const level in WOUND_PROPERTIES) {
+                        const prop = WOUND_PROPERTIES[level];
+                        if (prop && prop.checkbox) {
+                            prop.checkbox.dataset.stateManual = '0'; // Reset manual state
+                        }
+                    }
+                    console.log("[Healing] All manual wound checkboxes states reset.");
+                }
+
+                /**
+                 * Main function to apply healing effects.
+                 * Prioritizes healing worst manual wounds first and then updates strain.
+                 * @param {number} woundsHealed - Amount of health points (HP) to heal.
+                 * @param {number} strainHealed - Amount of strain points (SP) to heal.
+                 * @param {string[]} statusEffects - Array of status effects to apply.
+                 */
+                function applyHealing(woundsHealed, strainHealed, statusEffects = []) {
+                    console.log(`[Healing] Applying healing: HP=${woundsHealed}, SP=${strainHealed}, Status=${statusEffects.join(', ')}`);
+
+                    // 1. Heal Strain
+                    let currentStrain = parseInt(currentStrainInput.value) || 0;
+                    currentStrainInput.value = Math.max(0, currentStrain - strainHealed);
+
+                    // 2. Heal Manual Wounds (from worst to best)
+                    let healingPointsRemaining = woundsHealed;
+
+                    // Iterate wound levels from most severe to least severe (reverse order)
+                    for (let i = WOUND_LEVELS_ORDERED.length - 1; i >= 0; i--) {
+                        if (healingPointsRemaining <= 0) break; // Stop if no healing points left
+
+                        const level = WOUND_LEVELS_ORDERED[i];
+                        const prop = WOUND_PROPERTIES[level];
+                        if (!prop || !prop.checkbox) continue;
+
+                        let currentStateManual = parseInt(prop.checkbox.dataset.stateManual);
+
+                        if (currentStateManual === 2) { // If currently 'filled' manually
+                            // If it's incapacitated (no 'crossed' state), heal directly to unmarked
+                            if (prop.crossed_points === 0 && healingPointsRemaining >= prop.filled_points) {
+                                prop.checkbox.dataset.stateManual = '0'; // Change to 'unmarked'
+                                healingPointsRemaining -= prop.filled_points;
+                                console.log(`  Healed ${level} from filled to unmarked. Remaining HP: ${healingPointsRemaining}`);
+                            } else if (prop.crossed_points > 0) { // For wounds with a 'crossed' state
+                                const costToDowngradeToCrossed = prop.filled_points - prop.crossed_points;
+                                if (healingPointsRemaining >= costToDowngradeToCrossed) {
+                                    prop.checkbox.dataset.stateManual = '1'; // Change to 'crossed'
+                                    healingPointsRemaining -= costToDowngradeToCrossed;
+                                    console.log(`  Healed ${level} from filled to crossed. Remaining HP: ${healingPointsRemaining}`);
+                                }
+                            }
+                        }
+
+                        // Check if it's now 'crossed' (either was originally or just changed from 'filled')
+                        currentStateManual = parseInt(prop.checkbox.dataset.stateManual); // Re-read state in case it changed
+                        if (currentStateManual === 1) { // If currently 'crossed' manually
+                            // Try to downgrade from crossed to unmarked
+                            if (healingPointsRemaining >= prop.crossed_points) {
+                                prop.checkbox.dataset.stateManual = '0'; // Change to 'unmarked'
+                                healingPointsRemaining -= prop.crossed_points;
+                                console.log(`  Healed ${level} from crossed to unmarked. Remaining HP: ${healingPointsRemaining}`);
+                            }
+                        }
+                    }
+
+                    // 3. Apply Status Effects (same as before)
+                    if (statusEffects.length > 0) {
+                        let currentEffects = temporaryStatusEffectsTextarea.value.trim();
+                        const newEffects = statusEffects.join(', ');
+                        if (currentEffects) {
+                            const existingEffects = currentEffects.split(',').map(e => e.trim()).filter(e => e !== '');
+                            const effectsToAdd = statusEffects.filter(newEffect => !existingEffects.includes(newEffect));
+                            if (effectsToAdd.length > 0) {
+                                temporaryStatusEffectsTextarea.value = `${currentEffects.endsWith(',') || !currentEffects ? currentEffects : currentEffects + ','} ${effectsToAdd.join(', ')}`.trim();
+                            } else {
+                                console.log("[Healing] No new status effects to add (already present).");
+                            }
+                        } else {
+                            temporaryStatusEffectsTextarea.value = newEffects;
+                        }
+                        console.log("[Healing] Temporary status effects updated to:", temporaryStatusEffectsTextarea.value);
+                    } else {
+                        console.log("[Healing] No new status effects to apply.");
+                    }
+                    showMessage(`Used herb. Applied ${woundsHealed} HP, ${strainHealed} SP.`);
+                    // After healing manual wounds and strain, update the combined visual display
+                    updateStrainVisuals(); // This now updates all visual states based on manual + strain
+                }
+
+                /**
+                 * Resets all manual wound checkboxes to unmarked, resets strain to 0, and clears temporary status effects.
+                 * Used by First Aid Spray and Reset All Health buttons.
+                 */
+                function resetAllHealthAndStatus() {
+                    resetManualWoundCheckboxes(); // Resets only manual wound states
+                    currentStrainInput.value = 0; // Reset strain
+                    temporaryStatusEffectsTextarea.value = '';
+                    showMessage("Health and status reset.", 'info');
+                    logActivity("All health and status reset.");
+                    updateStrainVisuals(); // Re-render after resetting everything
+                }
+
+                /**
+                 * Renders and updates the visual state of the attribute/ability/virtue dots.
+                 * Adapted to work with checkbox inputs.
+                 * @param {object} skill - An object containing skill properties.
+                 */
+                function updateCheckboxDotsDisplay(skill) {
+                    const container = document.querySelector(`.dots[data-group="${skill.containerGroup}"]`) ||
+                        document.querySelector(`.virtue-dots[data-group="${skill.containerGroup}"]`);
+
+                    if (!container) {
+                        console.error(`Container not found for skill: ${skill.name} with data-group="${skill.containerGroup}"`);
+                        return;
+                    }
+
+                    // Cost display (for attributes and abilities)
+                    const costDisplay = document.getElementById(skill.costDisplayId);
+                    if (costDisplay && (skill.type === 'attribute' || skill.type === 'ability')) {
+                        if (skill.levelGetter() < MAX_LEVEL) {
+                            costDisplay.textContent = `Cost: ${skill.costArray[skill.levelGetter() + 1]} XP`;
+                            costDisplay.style.display = 'block'; // Ensure it's visible
+                        } else {
+                            costDisplay.textContent = `Maxed!`;
+                            costDisplay.style.display = 'block'; // Ensure it's visible
+                        }
+                    } else if (costDisplay) { // For virtues, ensure no cost text is displayed
+                        costDisplay.textContent = '';
+                        costDisplay.style.display = 'none'; // Hide if not applicable
+                    }
+
+
+                    // Apply active and current-level classes after attaching listeners
+                    const updatedCurrentLevel = skill.levelGetter();
+                    const checkboxes = Array.from(container.querySelectorAll('input[type="checkbox"]'));
+
+                    checkboxes.forEach((dot, index) => {
+                        const dotLevel = index + 1;
+                        if (dotLevel <= updatedCurrentLevel) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                        if (dotLevel === updatedCurrentLevel && updatedCurrentLevel > 0) {
+                            dot.classList.add('current-level');
+                        } else {
+                            dot.classList.remove('current-level');
+                        }
+                    });
+                }
+
+                /**
+                 * Renders all attribute, ability, and virtue dots.
+                 * This function centralizes the calls to updateCheckboxDotsDisplay for all skills.
+                 */
+                function renderAllSkillDots() {
+                    allAttributes.forEach(attr => {
+                        updateCheckboxDotsDisplay(attr);
+                    });
+
+                    allAbilities.forEach(ability => {
+                        updateCheckboxDotsDisplay(ability);
+                    });
+
+                    allVirtues.forEach(virtue => {
+                        updateCheckboxDotsDisplay(virtue);
+                    });
+                }
+
+                // Initial setup when the window loads
+                window.onload = function () {
+                    // Initialize XP values on page load (or refresh)
+                    totalXP = parseInt(expTotalInput.value) || 0;
+                    spentXP = parseInt(expSpentInput.value) || 0;
+                    availableXP = totalXP - spentXP; // Calculate available based on existing total and spent
+                    updateExperienceFields(); // Update display for correctness
+
+                    // Initialize WOUND_PROPERTIES after DOM is ready
+                    // These values represent the 'points' or severity associated with each state of a wound.
+                    WOUND_PROPERTIES = {
+                        'bruised': { checkbox: document.querySelector('.health-item-new[data-wound-level="bruised"] input[type="checkbox"]'), penalty: '', crossed_points: 1, filled_points: 2 },
+                        'hurt': { checkbox: document.querySelector('.health-item-new[data-wound-level="hurt"] input[type="checkbox"]'), penalty: '-1', crossed_points: 1, filled_points: 2 },
+                        'injured': { checkbox: document.querySelector('.health-item-new[data-wound-level="injured"] input[type="checkbox"]'), penalty: '-1', crossed_points: 1, filled_points: 2 },
+                        'wounded': { checkbox: document.querySelector('.health-item-new[data-wound-level="wounded"] input[type="checkbox"]'), penalty: '-2', crossed_points: 2, filled_points: 4 },
+                        'mauled': { checkbox: document.querySelector('.health-item-new[data-wound-level="mauled"] input[type="checkbox"]'), penalty: '-2', crossed_points: 2, filled_points: 4 },
+                        'crippled': { checkbox: document.querySelector('.health-item-new[data-wound-level="crippled"] input[type="checkbox"]'), penalty: '-5', crossed_points: 5, filled_points: 10 },
+                        'incapacitated': { checkbox: document.querySelector('.health-item-new[data-wound-level="incapacitated"] input[type="checkbox"]'), penalty: '', crossed_points: 0, filled_points: 1000 } // Incapacitated has no crossed state, and a very high filled value
+                    };
+
+
+                    // Initialize Attribute levels from current checkbox states and attach listeners
+                    allAttributes.forEach(attr => {
+                        const container = document.querySelector(`.dots[data-group="${attr.containerGroup}"]`);
+                        if (container) {
+                            const checkboxes = Array.from(container.querySelectorAll('input[type="checkbox"]'));
+                            let level = 0;
+                            // Initialize level from checked boxes
+                            for (let i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i].checked) {
+                                    level = i + 1;
+                                } else {
+                                    break; // Stop at the first unchecked box
+                                }
+                            }
+                            attr.levelSetter(level); // Set the initial level
+
+                            // Attach click listener for each attribute dot
+                            checkboxes.forEach((dot, index) => {
+                                dot.dataset.index = index + 1; // Ensure data-index is correct
+                                dot.addEventListener('click', function () {
+                                    const currentLevel = attr.levelGetter(); // Get current level
+                                    const targetLevel = parseInt(this.dataset.index); // The level this clicked dot represents
+
+                                    if (targetLevel <= currentLevel) {
+                                        // If clicking current level or lower, uncheck everything past it, set new level
+                                        attr.levelSetter(targetLevel);
+                                        showMessage(`${attr.name} level adjusted to ${targetLevel}.`, 'info');
+                                        logActivity(`Adjusted ${attr.name} to Level ${targetLevel}.`);
+                                    } else { // Upgrading
+                                        let costNeeded = 0;
+                                        for (let level = currentLevel + 1; level <= targetLevel; level++) {
+                                            if (level < attr.costArray.length) {
+                                                costNeeded += attr.costArray[level];
+                                            } else {
+                                                console.error(`Cost array out of bounds for ${attr.name} at level ${level}`);
+                                                showMessage(`Error: Cost calculation issue for ${attr.name}.`, 'error');
+                                                return;
+                                            }
+                                        }
+
+                                        if (availableXP < costNeeded) {
+                                            showMessage(`Not enough available points! Need ${costNeeded} to reach ${attr.name} Level ${targetLevel}. You have ${availableXP}.`, 'error');
+                                            return;
+                                        }
+
+                                        // Save state BEFORE applying the change
+                                        saveStateForUndo();
+
+                                        availableXP -= costNeeded;
+                                        spentXP += costNeeded;
+                                        attr.levelSetter(targetLevel);
+                                        logActivity(`Upgraded ${attr.name} to Level ${targetLevel} for ${costNeeded} points.`);
+                                        showMessage(`${attr.name} upgraded to Level ${targetLevel} for ${costNeeded} points!`, 'success');
+                                    }
+                                    updateExperienceFields();
+                                    renderAllSkillDots(); // Re-render all dots
+                                });
+                            });
+                        }
+                    });
+
+                    // Initialize Ability levels from current checkbox states and attach listeners
+                    allAbilities.forEach(ability => {
+                        const container = document.querySelector(`.dots[data-group="${ability.containerGroup}"]`);
+                        if (container) {
+                            const checkboxes = Array.from(container.querySelectorAll('input[type="checkbox"]'));
+                            let level = 0;
+                            // Initialize level from checked boxes
+                            for (let i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i].checked) {
+                                    level = i + 1;
+                                } else {
+                                    break;
+                                }
+                            }
+                            ability.levelSetter(level); // Set the initial level
+
+                            // Attach click listener for each ability dot
+                            checkboxes.forEach((dot, index) => {
+                                dot.dataset.index = index + 1; // Ensure data-index is correct
+                                dot.addEventListener('click', function () {
+                                    const currentLevel = ability.levelGetter();
+                                    const targetLevel = parseInt(this.dataset.index);
+
+                                    if (targetLevel <= currentLevel) {
+                                        // If clicking current level or lower, uncheck everything past it, set new level
+                                        ability.levelSetter(targetLevel);
+                                        showMessage(`${ability.name} level adjusted to ${targetLevel}.`, 'info');
+                                        logActivity(`Adjusted ${ability.name} to Level ${targetLevel}.`);
+                                    } else { // Upgrading
+                                        let costNeeded = 0;
+                                        for (let level = currentLevel + 1; level <= targetLevel; level++) {
+                                            if (level < ability.costArray.length) {
+                                                costNeeded += ability.costArray[level];
+                                            } else {
+                                                console.error(`Cost array out of bounds for ${ability.name} at level ${level}`);
+                                                showMessage(`Error: Cost calculation issue for ${ability.name}.`, 'error');
+                                                return;
+                                            }
+                                        }
+
+                                        if (availableXP < costNeeded) {
+                                            showMessage(`Not enough available points! Need ${costNeeded} to reach ${ability.name} Level ${targetLevel}. You have ${availableXP}.`, 'error');
+                                            return;
+                                        }
+
+                                        // Save state BEFORE applying the change
+                                        saveStateForUndo();
+
+                                        availableXP -= costNeeded;
+                                        spentXP += costNeeded;
+                                        ability.levelSetter(targetLevel);
+                                        logActivity(`Upgraded ${ability.name} to Level ${targetLevel} for ${costNeeded} points.`);
+                                        showMessage(`${ability.name} upgraded to Level ${targetLevel} for ${costNeeded} points!`, 'success');
+                                    }
+                                    updateExperienceFields();
+                                    renderAllSkillDots(); // Re-render all dots
+                                });
+                            });
+                        }
+                    });
+
+                    // Initialize Virtue levels from current checkbox states and attach listeners
+                    allVirtues.forEach(virtue => {
+                        const container = document.querySelector(`.virtue-dots[data-group="${virtue.containerGroup}"]`);
+                        if (container) {
+                            const checkboxes = Array.from(container.querySelectorAll('input[type="checkbox"]'));
+                            let level = 0;
+                            // Initialize level from checked boxes
+                            for (let i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i].checked) {
+                                    level = i + 1;
+                                } else {
+                                    break;
+                                }
+                            }
+                            virtue.levelSetter(level); // Set the initial level
+
+                            // Attach click listener for each virtue dot
+                            checkboxes.forEach((dot, index) => {
+                                dot.dataset.index = index + 1; // Ensure data-index is correct
+                                dot.addEventListener('click', function () {
+                                    const targetLevel = parseInt(this.dataset.index);
+                                    virtue.levelSetter(targetLevel); // Virtues just set level directly
+                                    showMessage(`${virtue.name} level set to ${targetLevel}.`, 'info');
+                                    renderAllSkillDots(); // Re-render all dots
+                                });
+                            });
+                        }
+                    });
+
+                    // Listener for direct input to Available XP field
+                    expAvailableInput.addEventListener('input', () => {
+                        const newAvailable = parseFloat(expAvailableInput.value) || 0;
+                        if (newAvailable < 0) {
+                            availableXP = 0; // Prevent negative available XP
+                            expAvailableInput.value = 0;
+                            showMessage("Available XP cannot be negative.", "error");
+                        } else {
+                            availableXP = newAvailable;
+                        }
+                        updateExperienceFields(); // This will recalculate totalXP
+                        logActivity(`Available XP manually set to ${availableXP}.`);
+                    });
+
+                    // Event listener for "Clear Log" button
+                    clearLogButton.addEventListener('click', () => {
+                        activityLog.value = '';
+                        logActivity('Activity log cleared.');
+                    });
+
+                    // Event listener for "Undo Last Change" button
+                    undoButton.addEventListener('click', undoLastChange);
+
+
+                    // Dynamic Merits/Flaws, Traits, Backgrounds (existing functionality)
+                    function setupDynamicFields(containerId, buttonId, labelPrefix) {
+                        const container = document.getElementById(containerId);
+                        const addButton = document.getElementById(buttonId);
+                        let fieldCount = container.children.length; // Initialize count based on existing elements
+
+                        const updateLabels = () => {
+                            Array.from(container.children).forEach((child, idx) => {
+                                const labelElement = child.querySelector('label');
+                                if (labelElement) {
+                                    labelElement.textContent = `${labelPrefix} ${idx + 1}:`;
+                                }
+                            });
+                            fieldCount = container.children.length; // Update count after re-indexing
+                        };
+
+                        const addField = () => {
+                            fieldCount++;
+                            const newItem = document.createElement('div');
+                            const itemClass = labelPrefix.toLowerCase().replace(/\s/g, '-') + '-item';
+                            newItem.classList.add(itemClass);
+
+                            newItem.innerHTML = `
+                    <label>${labelPrefix} ${fieldCount}:</label>
+                    <input type="text" class="text-input-line">
+                    <button type="button" class="delete-field-btn">X</button>
+                `;
+                            container.appendChild(newItem);
+
+                            newItem.querySelector('.delete-field-btn').addEventListener('click', (e) => {
+                                newItem.remove();
+                                updateLabels(); // Re-index labels after deletion
+                            });
+                        };
+
+                        addButton.addEventListener('click', addField);
+
+                        // Add event listeners to initial delete buttons
+                        Array.from(container.children).forEach(child => {
+                            const deleteButton = child.querySelector('.delete-field-btn');
+                            if (deleteButton) {
+                                deleteButton.addEventListener('click', (e) => {
+                                    child.remove();
+                                    updateLabels();
+                                });
+                            }
+                            // Also add an input listener to save data
+                            const inputField = child.querySelector('input[type="text"]');
+                            if (inputField) {
+                                inputField.addEventListener('input', () => {
+                                    // Implement saving logic if needed
+                                });
+                            }
+                        });
+                        updateLabels(); // Call initially to ensure existing items are correctly indexed
+                    }
+
+                    setupDynamicFields('merits-container', 'add-merit-btn', 'Merit');
+                    setupDynamicFields('flaws-container', 'add-flaw-btn', 'Flaw');
+                    setupDynamicFields('other-traits-container', 'add-other-trait-btn', 'Trait');
+                    setupDynamicFields('backgrounds-container', 'add-background-btn', 'Background');
+
+                    // Health section 3-state checkbox logic
+                    document.querySelectorAll('.health-item-new input[type="checkbox"]').forEach(checkbox => {
+                        // Ensure data-state-manual is initialized
+                        if (!checkbox.dataset.stateManual) {
+                            checkbox.dataset.stateManual = '0';
+                        }
+                        // Ensure data-state is also initialized to match manual state
+                        if (!checkbox.dataset.state) {
+                            checkbox.dataset.state = checkbox.dataset.stateManual;
+                        }
+                        updateCheckboxVisuals(checkbox); // Initial visual update for direct manual state
+
+                        checkbox.addEventListener('click', function (event) {
+                            let currentStateManual = parseInt(this.dataset.stateManual);
+                            currentStateManual = (currentStateManual + 1) % 3; // Cycle through 0, 1, 2
+                            this.dataset.stateManual = currentStateManual.toString();
+
+                            // Directly update the visual state (`data-state`) of THIS checkbox
+                            // based on its manual state and immediately update its visual appearance.
+                            this.dataset.state = currentStateManual.toString();
+                            updateCheckboxVisuals(this);
+
+                            logActivity(`Manually set ${this.parentNode.querySelector('label').textContent.trim()} to state ${currentStateManual}.`);
+
+                            // After changing a manual state, re-evaluate and apply strain's visual impact
+                            updateStrainVisuals();
+                        });
+                    });
+
+                    // Current Strain input listener to trigger combined wound track update
+                    currentStrainInput.addEventListener('input', () => {
+                        const newValue = parseInt(currentStrainInput.value) || 0;
+                        currentStrainInput.value = Math.max(0, newValue); // Ensure non-negative
+                        logActivity(`Strain counter set to ${currentStrainInput.value}.`);
+                        updateStrainVisuals(); // Re-render visuals affected by strain
+                    });
+
+
+                    // Photo upload logic (existing functionality)
+                    const photoBox = document.getElementById('photo-box-upload');
+                    const photoInput = document.getElementById('photo-upload-input');
+
+                    photoBox.addEventListener('click', () => {
+                        photoInput.click(); // Trigger the hidden file input click
+                    });
+
+                    photoInput.addEventListener('change', (event) => {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                // Clear existing content (text or previous image)
+                                photoBox.innerHTML = '';
+                                const img = document.createElement('img');
+                                img.src = e.target.result;
+                                img.alt = 'Uploaded Photo';
+                                photoBox.appendChild(img);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+
+                    // Attach event listeners for Herb Buttons (existing functionality)
+                    document.querySelectorAll('.herb-btn').forEach(button => {
+                        button.addEventListener('click', () => {
+                            const herbType = button.dataset.herb; // This is 'GG', 'GB', 'RGB', etc.
+                            if (checkAndConsumeItem(herbType)) { // checkAndConsumeItem will show error message if not found
+                                switch (herbType) {
+                                    case 'GG': // GG: 5 Healing Points (HP)
+                                        applyHealing(5, 0);
+                                        break;
+                                    case 'GB': // GB: 4 Healing Points (HP), Poison Immunity (PI)
+                                        applyHealing(4, 0, ['Poison Immunity']);
+                                        break;
+                                    case 'GGG': // GGG: 6 Healing Points (HP)
+                                        applyHealing(6, 0);
+                                        break;
+                                    case 'GGB': // GGB: 5 Healing Points (HP), Poison Immunity (PI)
+                                        applyHealing(5, 0, ['Poison Immunity']);
+                                        break;
+                                    case 'GGR': // GGR: 5 Healing Points (HP), +1 Soak (+1S)
+                                        applyHealing(5, 0, ['+1 Soak']);
+                                        break;
+                                    case 'RB': // RB: 4 Strain Points (SP), Poison Immunity (PI)
+                                        applyHealing(0, 4, ['Poison Immunity']);
+                                        break;
+                                    case 'RGB': // RGB: 4 Healing Points (HP) / Strain Points (SP), +1 Soak (+1S), Poison Immunity (PI)
+                                        applyHealing(4, 4, ['+1 Soak', 'Poison Immunity']);
+                                        break;
+                                    default:
+                                        console.log('Unknown herb type:', herbType);
+                                    // showMessage already handled by checkAndConsumeItem
+                                }
+                            }
+                        });
+                    });
+
+                    // Clear Status Effects Button (existing functionality)
+                    document.getElementById('clear-status-btn').addEventListener('click', () => {
+                        temporaryStatusEffectsTextarea.value = '';
+                        showMessage("Temporary status effects cleared.", 'info');
+                        logActivity("Temporary status effects cleared.");
+                    });
+
+                    // Reset All Health Button (existing functionality)
+                    document.getElementById('reset-health-btn').addEventListener('click', () => {
+                        resetAllHealthAndStatus();
+                    });
+
+                    // First Aid Spray Button (existing functionality)
+                    document.getElementById('first-aid-spray-btn').addEventListener('click', () => {
+                        const firstAidSprayItemName = "First Aid Spray"; // Make sure inventory uses this exact name
+                        if (checkAndConsumeItem(firstAidSprayItemName)) {
+                            resetAllHealthAndStatus();
+                            showMessage("First Aid Spray used. Health and status reset.", 'success');
+                            logActivity(`Used First Aid Spray. Health and status reset.`);
+                        } else {
+                            // showMessage already handled by checkAndConsumeItem
+                        }
+                    });
+
+                    // Render all dots at initial load
+                    renderAllSkillDots();
+                    logActivity('Character sheet loaded.');
+                    updateUndoButtonState(); // Initialize undo button state on load
+                    updateStrainVisuals(); // Initial render of strain visuals based on current strain and manual wounds
+                }; // End of window.onload
+
+                // VLADO: testing save function
+                function saveCharacter(content, fileName, contentType) {
+                    var jsonData = JSON.stringify(content);
+                    var a = document.createElement("a");
+                    var file = new Blob([content], { type: contentType });
+                    a.href = URL.createObjectURL(file);
+                    a.download = fileName;
+                    a.click();
+                }
+
+            </script>
+
+            <script>
+                function collectSheetData() {
+                    const data = {};
+
+                    // Standard fields with ID or name
+                    document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => {
+                        const key = input.id || input.name;
+                        if (key) {
+                            data[key] = input.value;
+                        }
+                    });
+
+                    // Abilities (Talents, Skills, Knowledges)
+                    document.querySelectorAll('.ability-item input[type="text"]').forEach((input, i) => {
+                        data[`ability-text-${i}`] = input.value;
+                    });
+
+                    // Traits and backgrounds
+                    ['merits-sub-section', 'flaws-sub-section', 'backgrounds-sub-section', 'other-traits-sub-section'].forEach(sectionClass => {
+                        const section = document.querySelector(`.${sectionClass}`);
+                        if (section) {
+                            const inputs = section.querySelectorAll('input[type="text"], input[type="number"]');
+                            data[`${sectionClass}-text`] = Array.from(inputs).map(i => i.value);
+                        }
+                    });
+
+                    // Weapons and armor (including Bonus, Diff, Special Effects, etc.)
+                    document.querySelectorAll('.equipment-box-weapons input[type="text"], .equipment-box-weapons input[type="number"]').forEach((input, i) => {
+                        data[`weapon-field-${i}`] = input.value;
+                    });
+                    document.querySelectorAll('.armor-section-in-health input[type="text"], .armor-section-in-health input[type="number"]').forEach((input, i) => {
+                        data[`armor-field-${i}`] = input.value;
+                    });
+
+                    // Wound/damage notes
+                    document.querySelectorAll('.health-item-new input[type="text"]').forEach((input, i) => {
+                        data[`wound-note-${i}`] = input.value;
+                    });
+
+                    // Checkbox states (dots and others)
+                    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, i) => {
+                        const key = checkbox.dataset.group ? `${checkbox.dataset.group}-${checkbox.dataset.index}` : `checkbox-${i}`;
+                        data[key] = {
+                            checked: checkbox.checked,
+                            classes: checkbox.className
+                        };
+                    });
+
+                    // Photo
+                    const img = document.querySelector(".photo-box img");
+                    if (img && img.src.startsWith("data:image")) {
+                        data.uploadedPhoto = img.src;
+                    }
+
+                    return data;
+                }
+
+                function loadSheetData(data) {
+                    // ID or name-mapped fields
+                    document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => {
+                        const key = input.id || input.name;
+                        if (key && data[key] !== undefined) {
+                            input.value = data[key];
+                        }
+                    });
+
+                    // Abilities section
+                    document.querySelectorAll('.ability-item input[type="text"]').forEach((input, i) => {
+                        const key = `ability-text-${i}`;
+                        if (data[key] !== undefined) input.value = data[key];
+                    });
+
+                    // Traits and backgrounds
+                    ['merits-sub-section', 'flaws-sub-section', 'backgrounds-sub-section', 'other-traits-sub-section'].forEach(sectionClass => {
+                        const section = document.querySelector(`.${sectionClass}`);
+                        const values = data[`${sectionClass}-text`];
+                        if (section && values) {
+                            const inputs = section.querySelectorAll('input[type="text"], input[type="number"]');
+                            values.forEach((val, i) => {
+                                if (inputs[i]) inputs[i].value = val;
+                            });
+                        }
+                    });
+
+                    // Weapons and armor
+                    document.querySelectorAll('.equipment-box-weapons input[type="text"], .equipment-box-weapons input[type="number"]').forEach((input, i) => {
+                        const key = `weapon-field-${i}`;
+                        if (data[key] !== undefined) input.value = data[key];
+                    });
+                    document.querySelectorAll('.armor-section-in-health input[type="text"], .armor-section-in-health input[type="number"]').forEach((input, i) => {
+                        const key = `armor-field-${i}`;
+                        if (data[key] !== undefined) input.value = data[key];
+                    });
+
+                    // Wound notes
+                    document.querySelectorAll('.health-item-new input[type="text"]').forEach((input, i) => {
+                        const key = `wound-note-${i}`;
+                        if (data[key] !== undefined) input.value = data[key];
+                    });
+
+                    // Checkboxes
+                    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, i) => {
+                        const key = checkbox.dataset.group ? `${checkbox.dataset.group}-${checkbox.dataset.index}` : `checkbox-${i}`;
+                        if (data[key]) {
+                            checkbox.checked = data[key].checked;
+                            checkbox.className = data[key].classes;
+                        }
+                    });
+
+                    // Photo
+                    const img = document.querySelector(".photo-box img");
+                    if (img && data.uploadedPhoto) {
+                        img.src = data.uploadedPhoto;
+                    }
+                }
+
+                function exportToJSONFile() {
+                    const data = collectSheetData();
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "character_sheet.json";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+
+                function importFromJSONFile(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            loadSheetData(data);
+                            alert("Character sheet loaded successfully!");
+                        } catch {
+                            alert("Failed to parse JSON.");
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            </script>
+            <script>
+                let traitCounter = 0;
+                let backgroundCounter = 0;
+
+                function addTraitRow(value = '', id = '') {
+                    const container = document.getElementById('traits-container');
+                    const textarea = document.createElement('textarea');
+                    textarea.className = 'trait-textarea';
+                    if (!id) {
+                        id = 'trait-' + (++traitCounter);
+                    }
+                    textarea.id = id;
+                    textarea.value = value;
+                    container.appendChild(textarea);
+                }
+
+                function addBackgroundRow(value = '', id = '') {
+                    const container = document.getElementById('backgrounds-container');
+                    const textarea = document.createElement('textarea');
+                    textarea.className = 'background-textarea';
+                    if (!id) {
+                        id = 'background-' + (++backgroundCounter);
+                    }
+                    textarea.id = id;
+                    textarea.value = value;
+                    container.appendChild(textarea);
+                }
+
+                function saveCharacterData() {
+                    const data = {};
+
+                    document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(el => {
+                        if (!el.id) {
+                            el.id = 'auto-' + Math.random().toString(36).substr(2, 9);
+                        }
+                        data[el.id] = el.value;
+                    });
+
+                    document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+                        let key = "";
+                        if (el.dataset.group && el.dataset.index) {
+                            key = `dot-${el.dataset.group}-${el.dataset.index}`;
+                        } else {
+                            if (!el.id) {
+                                el.id = 'checkbox-auto-' + Math.random().toString(36).substr(2, 9);
+                            }
+                            key = `checkbox-${el.id}`;
+                        }
+                        data[key] = el.checked;
+                    });
+
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = 'character.json';
+                    a.click();
+                }
+
+                function loadCharacterData(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const data = JSON.parse(e.target.result);
+                        for (const key in data) {
+                            const value = data[key];
+
+                            if (key.startsWith("dot-")) {
+                                const [, group, index] = key.split("-");
+                                const checkbox = document.querySelector(`input[type="checkbox"][data-group="${group}"][data-index="${index}"]`);
+                                if (checkbox) checkbox.checked = value;
+                            } else if (key.startsWith("checkbox-")) {
+                                const id = key.replace("checkbox-", "");
+                                const checkbox = document.getElementById(id);
+                                if (checkbox) checkbox.checked = value;
+                            } else {
+                                let el = document.getElementById(key);
+                                if (!el) {
+                                    if (key.startsWith("trait-")) {
+                                        addTraitRow(value, key);
+                                    } else if (key.startsWith("background-")) {
+                                        addBackgroundRow(value, key);
+                                    }
+                                } else {
+                                    el.value = value;
+                                }
+                            }
+                        }
+
+                        alert("Character loaded!");
+                    };
+                    reader.readAsText(file);
+                }
+            </script>
+</body>
+
+</html>

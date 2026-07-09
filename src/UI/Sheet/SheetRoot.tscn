@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxk3m8q1n5t7v"]
+
+[ext_resource type="Script" path="res://src/UI/Sheet/SheetRoot.cs" id="1_sheetroot"]
+[ext_resource type="PackedScene" uid="uid://c5h8n2y4x7m1w" path="res://src/UI/Sheet/Panels/BioPanel.tscn" id="2_bio"]
+[ext_resource type="PackedScene" uid="uid://ddx5t7q2m8v3n" path="res://src/UI/Sheet/Panels/AttributesSkillsPanel.tscn" id="3_attrskill"]
+[ext_resource type="PackedScene" uid="uid://ev3q8x1n4m7p2" path="res://src/UI/Sheet/Panels/VirtuesPanel.tscn" id="4_virtues"]
+[ext_resource type="PackedScene" uid="uid://f7k2x9m3q1v5t" path="res://src/UI/Sheet/Panels/XpPanel.tscn" id="5_xp"]
+[ext_resource type="PackedScene" uid="uid://h3n8x2m5q9v1t" path="res://src/UI/Sheet/Panels/HealthPanel.tscn" id="6_health"]
+[ext_resource type="PackedScene" uid="uid://k8p2x5m9q3v6t" path="res://src/UI/Sheet/Panels/ActionPointsPanel.tscn" id="7_ap"]
+[ext_resource type="PackedScene" uid="uid://n4q8x2m6t9v3r" path="res://src/UI/Sheet/Panels/InventoryPanel.tscn" id="8_inventory"]
+[ext_resource type="PackedScene" uid="uid://q7x2m5n8t3v1r" path="res://src/UI/Sheet/Panels/SessionLogPanel.tscn" id="9_sessionlog"]
+[ext_resource type="PackedScene" uid="uid://s9x4m7n2t6v3p" path="res://src/UI/Sheet/Panels/TagsPanel.tscn" id="10_tags"]
+
+[node name="SheetRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sheetroot")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "← Roster"
+
+[node name="CharacterNameLabel" type="Label" parent="VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(unnamed)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+vertical_alignment = 1
+
+[node name="SaveButton" type="Button" parent="VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="Tabs" type="TabContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Bio" parent="VBox/Tabs" instance=ExtResource("2_bio")]
+layout_mode = 2
+
+[node name="Attributes & Skills" parent="VBox/Tabs" instance=ExtResource("3_attrskill")]
+visible = false
+layout_mode = 2
+
+[node name="Virtues" parent="VBox/Tabs" instance=ExtResource("4_virtues")]
+visible = false
+layout_mode = 2
+
+[node name="XP" parent="VBox/Tabs" instance=ExtResource("5_xp")]
+visible = false
+layout_mode = 2
+
+[node name="Health" parent="VBox/Tabs" instance=ExtResource("6_health")]
+visible = false
+layout_mode = 2
+
+[node name="Action Points" parent="VBox/Tabs" instance=ExtResource("7_ap")]
+visible = false
+layout_mode = 2
+
+[node name="Inventory" parent="VBox/Tabs" instance=ExtResource("8_inventory")]
+visible = false
+layout_mode = 2
+
+[node name="Session Log" parent="VBox/Tabs" instance=ExtResource("9_sessionlog")]
+visible = false
+layout_mode = 2
+
+[node name="Merits, Flaws, Traits & Backgrounds" parent="VBox/Tabs" instance=ExtResource("10_tags")]
+visible = false
+layout_mode = 2

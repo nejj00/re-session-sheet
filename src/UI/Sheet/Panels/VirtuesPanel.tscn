@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ev3q8x1n4m7p2"]
+
+[ext_resource type="PackedScene" uid="uid://dvj4y8k1m3p7q" path="res://src/UI/Components/FramedPanel/FramedPanel.tscn" id="1_framed"]
+[ext_resource type="Script" path="res://src/UI/Sheet/Panels/VirtuesPanel.cs" id="2_virtues"]
+
+[node name="VirtuesPanel" instance=ExtResource("1_framed")]
+script = ExtResource("2_virtues")

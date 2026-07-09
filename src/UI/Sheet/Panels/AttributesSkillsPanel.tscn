@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddx5t7q2m8v3n"]
+
+[ext_resource type="PackedScene" uid="uid://dvj4y8k1m3p7q" path="res://src/UI/Components/FramedPanel/FramedPanel.tscn" id="1_framed"]
+[ext_resource type="Script" path="res://src/UI/Sheet/Panels/AttributesSkillsPanel.cs" id="2_attrskill"]
+
+[node name="AttributesSkillsPanel" instance=ExtResource("1_framed")]
+script = ExtResource("2_attrskill")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://h3n8x2m5q9v1t"]
+
+[ext_resource type="PackedScene" uid="uid://dvj4y8k1m3p7q" path="res://src/UI/Components/FramedPanel/FramedPanel.tscn" id="1_framed"]
+[ext_resource type="Script" path="res://src/UI/Sheet/Panels/HealthPanel.cs" id="2_health"]
+
+[node name="HealthPanel" instance=ExtResource("1_framed")]
+script = ExtResource("2_health")

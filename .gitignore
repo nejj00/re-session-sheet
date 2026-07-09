@@ -1,0 +1,18 @@
+# Godot 4+ specific ignores
+.godot/
+.mono/
+data_*/
+export_credentials.cfg
+
+# .NET / MSBuild
+.vs/
+bin/
+obj/
+*.user
+
+# Exported builds
+builds/
+
+# OS
+.DS_Store
+Thumbs.db
