@@ -79,6 +79,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "New Character"
 
+[node name="ImportButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/NewRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Import Legacy"
+
 [node name="StatusLabel" type="Label" parent="CenterContainer/Panel/Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2

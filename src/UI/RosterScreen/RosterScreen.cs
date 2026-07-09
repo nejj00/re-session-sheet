@@ -23,6 +23,7 @@ public partial class RosterScreen : Control
 		GetNode<Button>("%NewButton").Pressed += OnNewPressed;
 		GetNode<Button>("%OpenButton").Pressed += OnOpenPressed;
 		GetNode<Button>("%DeleteButton").Pressed += OnDeletePressed;
+		GetNode<Button>("%ImportButton").Pressed += OnImportPressed;
 
 		RefreshRoster();
 	}
@@ -84,6 +85,42 @@ public partial class RosterScreen : Control
 		GameState.Instance.DeleteCharacter(character.Id);
 		_statusLabel.Text = $"Deleted \"{character.Sheet.Name}\".";
 		RefreshRoster();
+	}
+
+	private void OnImportPressed()
+	{
+		var dialog = new FileDialog
+		{
+			FileMode = FileDialog.FileModeEnum.OpenFile,
+			Access = FileDialog.AccessEnum.Filesystem,
+			Title = "Import Legacy JSON",
+			Filters = new[] { "*.json ; Legacy Character JSON" }
+		};
+
+		dialog.FileSelected += path =>
+		{
+			try
+			{
+				string json = System.IO.File.ReadAllText(path);
+				var migrated = Domain.Serialization.LegacyImporter.Import(json);
+				GameState.Instance.SaveService.Save(migrated);
+				_statusLabel.Text = $"Imported \"{migrated.Sheet.Name}\".";
+				RefreshRoster();
+			}
+			catch (Exception ex)
+			{
+				_statusLabel.Text = $"Import failed: {ex.Message}";
+			}
+			finally
+			{
+				dialog.QueueFree();
+			}
+		};
+
+		dialog.Canceled += () => dialog.QueueFree();
+
+		AddChild(dialog);
+		dialog.PopupCentered(new Vector2I(600, 400));
 	}
 
 	private int GetSelectedIndex()
