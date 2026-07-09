@@ -38,15 +38,15 @@ public static class AttributeCatalog
 
 public class Attributes
 {
-	public int Strength { get; set; } = 1;
-	public int Dexterity { get; set; } = 1;
-	public int Stamina { get; set; } = 1;
-	public int Charisma { get; set; } = 1;
-	public int Manipulation { get; set; } = 1;
-	public int Appearance { get; set; } = 1;
-	public int Perception { get; set; } = 1;
-	public int Intelligence { get; set; } = 1;
-	public int Wits { get; set; } = 1;
+	public int Strength { get; set; } = 0;
+	public int Dexterity { get; set; } = 0;
+	public int Stamina { get; set; } = 0;
+	public int Charisma { get; set; } = 0;
+	public int Manipulation { get; set; } = 0;
+	public int Appearance { get; set; } = 0;
+	public int Perception { get; set; } = 0;
+	public int Intelligence { get; set; } = 0;
+	public int Wits { get; set; } = 0;
 
 	public int Get(AttributeId id) => id switch
 	{

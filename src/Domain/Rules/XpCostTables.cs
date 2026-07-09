@@ -7,7 +7,7 @@ namespace RESessionSheet.Domain.Rules;
 /// </summary>
 public static class XpCostTables
 {
-	public static readonly int[] AttributeCumulative = { 0, 5, 10, 15, 20, 25, 30 };
-	public static readonly int[] SkillCumulative = { 0, 3, 6, 9, 12, 15, 18 };
+	public static readonly int[] AttributeCumulative = { 0, 5, 15, 30, 50, 75, 105 };
+	public static readonly int[] SkillCumulative = { 0, 3, 9, 18, 30, 45, 63 };
 	public static readonly int[] VirtueCumulative = AttributeCumulative;
 }
