@@ -1,0 +1,193 @@
+{
+  "items": [
+    {
+      "id": "combat-knife",
+      "name": "Combat Knife",
+      "category": "weapon",
+      "description": "Standard-issue melee weapon. Insta-kills a knocked-down basic zombie or dog.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "nightstick",
+      "name": "Nightstick",
+      "category": "weapon",
+      "description": "A blunt sidearm; can help resist a bite or hook.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "baseball-bat",
+      "name": "Baseball Bat",
+      "category": "weapon",
+      "description": "Improvised melee weapon that can bind enemies with a Strength+Brawl check.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "pistol-m9-beretta",
+      "name": "M9 Beretta",
+      "category": "weapon",
+      "description": "Freebie starting pistol. 15+1 capacity, no upgrade slots.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X.", "X.", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "pistol-colt-1911",
+      "name": "Colt 1911",
+      "category": "weapon",
+      "description": "Freebie starting pistol. 8+1 capacity.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X.", "X.", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "pistol-five-seven-punisher",
+      "name": "Five-Seven USG \"Punisher\"",
+      "category": "weapon",
+      "description": "Pierces through 2 targets.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X.", "X.", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "pistol-springfield-xd9-blacktail",
+      "name": "Springfield XD9 \"Blacktail\"",
+      "category": "weapon",
+      "description": "Rapid fire with laser sight consistency.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X.", "X.", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "pistol-1910-mauser-red-9",
+      "name": "1910 Mauser \"Red 9\"",
+      "category": "weapon",
+      "description": "A found weapon with a knockdown mechanic on certain hit locations.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X.", "X.", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "pistol-glock-19",
+      "name": "Glock 19",
+      "category": "weapon",
+      "description": "Most upgrade-compatible pistol.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X.", "X.", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "shotgun-mossberg-500",
+      "name": "Mossberg 500",
+      "category": "weapon",
+      "description": "12-gauge pump-action. Choke Tube upgrade extends range and damage.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X", "X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "shotgun-beretta-470-silverhawk",
+      "name": "Beretta 470 Silverhawk",
+      "category": "weapon",
+      "description": "20-gauge, found weapon. Sawed-off barrel trade-off.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X", "X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "shotgun-benelli-m4-tactical",
+      "name": "Benelli M4 Tactical",
+      "category": "weapon",
+      "description": "12-gauge semi-auto.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X", "X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "shotgun-aa-12-devastator",
+      "name": "AA-12 Devastator",
+      "category": "weapon",
+      "description": "Cannot land critical hits, but hits hard. Supports Incendiary Shells.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X", "X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "smg-steyr-tmp",
+      "name": "Steyr TMP",
+      "category": "weapon",
+      "description": "Stock upgrade removes the AP cost for the first 6 bullets fired.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["XX", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "smg-mp7",
+      "name": "MP7",
+      "category": "weapon",
+      "description": "Pierces through 3 enemies.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["XX", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "smg-mp5k",
+      "name": "MP5K",
+      "category": "weapon",
+      "description": "3-round burst or full auto fire modes.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["XX", "XX"],
+      "stackable": false
+    },
+    {
+      "id": "sniper-msp-m700",
+      "name": "MSP M700",
+      "category": "weapon",
+      "description": "High per-shot AP cost, but devastating weakspot damage.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X", "X", "X", "X", "X"],
+      "stackable": false
+    },
+    {
+      "id": "green-herb",
+      "name": "Green Herb",
+      "category": "health",
+      "description": "Base healing herb. Combine with others for stronger effects.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X"],
+      "stackable": true
+    },
+    {
+      "id": "red-herb",
+      "name": "Red Herb",
+      "category": "health",
+      "description": "Inert alone; boosts other herbs when combined.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X"],
+      "stackable": true
+    },
+    {
+      "id": "blue-herb",
+      "name": "Blue Herb",
+      "category": "health",
+      "description": "Grants Poison Immunity when combined with other herbs.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X"],
+      "stackable": true
+    },
+    {
+      "id": "first-aid-spray",
+      "name": "First Aid Spray",
+      "category": "health",
+      "description": "Fully clears all wounds and Strain.",
+      "iconPath": "res://data/assets/items/placeholder.png",
+      "shape": ["X"],
+      "stackable": true
+    }
+  ]
+}

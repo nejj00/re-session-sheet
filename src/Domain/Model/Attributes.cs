@@ -14,7 +14,7 @@ public enum AttributeId
 	Stamina,
 	Charisma,
 	Manipulation,
-	Appearance,
+	Composure,
 	Perception,
 	Intelligence,
 	Wits
@@ -29,7 +29,7 @@ public static class AttributeCatalog
 		(AttributeId.Stamina, AttributeCategory.Physical, "Stamina"),
 		(AttributeId.Charisma, AttributeCategory.Social, "Charisma"),
 		(AttributeId.Manipulation, AttributeCategory.Social, "Manipulation"),
-		(AttributeId.Appearance, AttributeCategory.Social, "Appearance"),
+		(AttributeId.Composure, AttributeCategory.Social, "Composure"),
 		(AttributeId.Perception, AttributeCategory.Mental, "Perception"),
 		(AttributeId.Intelligence, AttributeCategory.Mental, "Intelligence"),
 		(AttributeId.Wits, AttributeCategory.Mental, "Wits"),
@@ -43,7 +43,7 @@ public class Attributes
 	public int Stamina { get; set; } = 0;
 	public int Charisma { get; set; } = 0;
 	public int Manipulation { get; set; } = 0;
-	public int Appearance { get; set; } = 0;
+	public int Composure { get; set; } = 0;
 	public int Perception { get; set; } = 0;
 	public int Intelligence { get; set; } = 0;
 	public int Wits { get; set; } = 0;
@@ -55,7 +55,7 @@ public class Attributes
 		AttributeId.Stamina => Stamina,
 		AttributeId.Charisma => Charisma,
 		AttributeId.Manipulation => Manipulation,
-		AttributeId.Appearance => Appearance,
+		AttributeId.Composure => Composure,
 		AttributeId.Perception => Perception,
 		AttributeId.Intelligence => Intelligence,
 		AttributeId.Wits => Wits,
@@ -71,7 +71,7 @@ public class Attributes
 			case AttributeId.Stamina: Stamina = value; break;
 			case AttributeId.Charisma: Charisma = value; break;
 			case AttributeId.Manipulation: Manipulation = value; break;
-			case AttributeId.Appearance: Appearance = value; break;
+			case AttributeId.Composure: Composure = value; break;
 			case AttributeId.Perception: Perception = value; break;
 			case AttributeId.Intelligence: Intelligence = value; break;
 			case AttributeId.Wits: Wits = value; break;

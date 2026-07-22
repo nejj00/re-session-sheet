@@ -161,9 +161,16 @@ public partial class HealthPanel : FramedPanel
 		_isLoading = false;
 	}
 
+	/// <summary>Catalog-linked items store their real name in the catalog, not in Name (which is
+	/// blank for them) - resolve whichever one actually applies before matching by name.</summary>
+	private static string EffectiveName(InventoryItem item) =>
+		item.CatalogId != null
+			? GameState.Instance.ItemCatalog.Find(item.CatalogId)?.Name ?? item.Name
+			: item.Name;
+
 	private static int CountItem(string name) =>
 		Sheet.Inventory.Items
-			.Where(i => string.Equals(i.Name.Trim(), name, StringComparison.OrdinalIgnoreCase))
+			.Where(i => string.Equals(EffectiveName(i).Trim(), name, StringComparison.OrdinalIgnoreCase))
 			.Sum(i => i.Quantity);
 
 	private void RefreshHerbAvailability()
@@ -302,7 +309,7 @@ public partial class HealthPanel : FramedPanel
 		int remaining = count;
 		for (int i = items.Count - 1; i >= 0 && remaining > 0; i--)
 		{
-			if (!string.Equals(items[i].Name.Trim(), name, StringComparison.OrdinalIgnoreCase))
+			if (!string.Equals(EffectiveName(items[i]).Trim(), name, StringComparison.OrdinalIgnoreCase))
 			{
 				continue;
 			}

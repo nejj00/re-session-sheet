@@ -24,6 +24,7 @@ public partial class GameState : Node
 	[Signal] public delegate void SkillChangedEventHandler();
 
 	public SaveService SaveService { get; private set; } = null!;
+	public ItemCatalogService ItemCatalog { get; private set; } = null!;
 	public CharacterFile? CurrentCharacter { get; private set; }
 
 	private Godot.Timer _autosaveTimer = null!;
@@ -34,6 +35,7 @@ public partial class GameState : Node
 
 		string charactersPath = ProjectSettings.GlobalizePath("user://characters");
 		SaveService = new SaveService(charactersPath);
+		ItemCatalog = new ItemCatalogService();
 
 		_autosaveTimer = new Godot.Timer { OneShot = true, WaitTime = AutosaveDebounceSeconds };
 		_autosaveTimer.Timeout += OnAutosaveTimeout;
