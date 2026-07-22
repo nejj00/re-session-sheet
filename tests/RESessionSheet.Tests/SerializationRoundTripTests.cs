@@ -39,7 +39,7 @@ public class SerializationRoundTripTests
 		sheet.Attributes.Stamina = 2;
 		sheet.Attributes.Charisma = 2;
 		sheet.Attributes.Manipulation = 1;
-		sheet.Attributes.Appearance = 2;
+		sheet.Attributes.Composure = 2;
 		sheet.Attributes.Perception = 2;
 		sheet.Attributes.Intelligence = 4;
 		sheet.Attributes.Wits = 3;
@@ -69,7 +69,7 @@ public class SerializationRoundTripTests
 		sheet.Inventory.Items.Add(new InventoryItem
 		{
 			Name = "Green Herb",
-			Category = "Herb",
+			Category = InventoryCategory.Health,
 			Quantity = 3,
 			Notes = "Found in the garage",
 			Equipped = false,
@@ -82,7 +82,7 @@ public class SerializationRoundTripTests
 		sheet.Inventory.Items.Add(new InventoryItem
 		{
 			Name = "Combat Knife",
-			Category = "Weapon",
+			Category = InventoryCategory.Weapon,
 			Quantity = 1,
 			Equipped = true,
 			GridWidth = 1,
@@ -155,7 +155,7 @@ public class SerializationRoundTripTests
 		Assert.Equal(3, deserialized.Sheet.Skills.Get(SkillId.Stealth).Rating);
 		// Untouched skills should still be present (pre-seeded), just at their default rating.
 		Assert.Equal(0, deserialized.Sheet.Skills.Get(SkillId.Enigmas).Rating);
-		Assert.Equal(30, deserialized.Sheet.Skills.Entries.Count);
+		Assert.Equal(23, deserialized.Sheet.Skills.Entries.Count);
 	}
 
 	[Fact]
@@ -217,7 +217,7 @@ public class SerializationRoundTripTests
 		var deserialized = CharacterFileSerializer.Deserialize(json);
 
 		Assert.Equal(file.Id, deserialized.Id);
-		Assert.Equal(30, deserialized.Sheet.Skills.Entries.Count);
+		Assert.Equal(23, deserialized.Sheet.Skills.Entries.Count);
 	}
 
 	[Fact]

@@ -1,11 +1,30 @@
 namespace RESessionSheet.Domain.Model;
 
+public enum InventoryCategory
+{
+	Health,
+	Weapon,
+	Armor,
+	Key,
+	Ammo,
+	Misc
+}
+
 public class InventoryItem
 {
 	public Guid Id { get; set; } = Guid.NewGuid();
+
+	/// <summary>
+	/// When set, this instance is linked to an ItemCatalog entry by id - Name/Category/Shape/IconPath
+	/// should be looked up live from the catalog rather than duplicated here, so catalog edits stay
+	/// in sync with every existing instance. Null means a freeform item (hybrid mode): Name/Category
+	/// below are the actual source of truth for it.
+	/// </summary>
+	public string? CatalogId { get; set; }
+
 	public string Name { get; set; } = "";
-	/// <summary>Freeform in V1 (Herb/Weapon/Armor/Key/Ammo/Misc); a catalog-backed enum is a later-phase upgrade.</summary>
-	public string Category { get; set; } = "";
+	/// <summary>Only meaningful when CatalogId is null; catalog-linked items use the catalog entry's category.</summary>
+	public InventoryCategory Category { get; set; } = InventoryCategory.Misc;
 	public int Quantity { get; set; } = 1;
 	public string Notes { get; set; } = "";
 	public bool Equipped { get; set; }

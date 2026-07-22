@@ -10,11 +10,11 @@ public enum SkillCategory
 public enum SkillId
 {
 	// Talents
-	Alertness, Athletics, Brawl, Dodge, Empathy, Expression, Intimidation, Leadership, Streetwise, Subterfuge,
+	Alertness, Athletics, Brawl, Dodge, Intimidation, Leadership, Streetwise, Subterfuge,
 	// Skills
-	AnimalKen, Drive, Etiquette, Firearms, Melee, Performance, Repair, Security, Stealth, Survival,
+	AnimalKen, Drive, Firearms, Melee, Performance, Repair, Security, Stealth, Survival,
 	// Knowledges
-	Bureaucracy, Computer, Enigmas, Investigation, Law, Linguistics, Medicine, Occult, Politics, Science
+	Hacking, Enigmas, Investigation, Linguistics, Medicine, Science
 }
 
 public static class SkillCatalog
@@ -25,8 +25,6 @@ public static class SkillCatalog
 		(SkillId.Athletics, SkillCategory.Talent, "Athletics"),
 		(SkillId.Brawl, SkillCategory.Talent, "Brawl"),
 		(SkillId.Dodge, SkillCategory.Talent, "Dodge"),
-		(SkillId.Empathy, SkillCategory.Talent, "Empathy"),
-		(SkillId.Expression, SkillCategory.Talent, "Expression"),
 		(SkillId.Intimidation, SkillCategory.Talent, "Intimidation"),
 		(SkillId.Leadership, SkillCategory.Talent, "Leadership"),
 		(SkillId.Streetwise, SkillCategory.Talent, "Streetwise"),
@@ -34,7 +32,6 @@ public static class SkillCatalog
 
 		(SkillId.AnimalKen, SkillCategory.Skill, "Animal Ken"),
 		(SkillId.Drive, SkillCategory.Skill, "Drive"),
-		(SkillId.Etiquette, SkillCategory.Skill, "Etiquette"),
 		(SkillId.Firearms, SkillCategory.Skill, "Firearms"),
 		(SkillId.Melee, SkillCategory.Skill, "Melee"),
 		(SkillId.Performance, SkillCategory.Skill, "Performance"),
@@ -43,15 +40,11 @@ public static class SkillCatalog
 		(SkillId.Stealth, SkillCategory.Skill, "Stealth"),
 		(SkillId.Survival, SkillCategory.Skill, "Survival"),
 
-		(SkillId.Bureaucracy, SkillCategory.Knowledge, "Bureaucracy"),
-		(SkillId.Computer, SkillCategory.Knowledge, "Computer"),
+		(SkillId.Hacking, SkillCategory.Knowledge, "Computer"),
 		(SkillId.Enigmas, SkillCategory.Knowledge, "Enigmas"),
 		(SkillId.Investigation, SkillCategory.Knowledge, "Investigation"),
-		(SkillId.Law, SkillCategory.Knowledge, "Law"),
 		(SkillId.Linguistics, SkillCategory.Knowledge, "Linguistics"),
 		(SkillId.Medicine, SkillCategory.Knowledge, "Medicine"),
-		(SkillId.Occult, SkillCategory.Knowledge, "Occult"),
-		(SkillId.Politics, SkillCategory.Knowledge, "Politics"),
 		(SkillId.Science, SkillCategory.Knowledge, "Science"),
 	};
 }

@@ -367,7 +367,7 @@ public static class LegacyImporter
 				sheet.Inventory.Items.Add(new InventoryItem
 				{
 					Name = "Legacy Inventory",
-					Category = "Misc",
+					Category = InventoryCategory.Misc,
 					Notes = v.Trim()
 				});
 			}
@@ -439,7 +439,7 @@ public static class LegacyImporter
 			case "stamina": sheet.Attributes.Stamina = Math.Max(sheet.Attributes.Stamina, level); break;
 			case "charisma": sheet.Attributes.Charisma = Math.Max(sheet.Attributes.Charisma, level); break;
 			case "manipulation": sheet.Attributes.Manipulation = Math.Max(sheet.Attributes.Manipulation, level); break;
-			case "appearance": sheet.Attributes.Appearance = Math.Max(sheet.Attributes.Appearance, level); break;
+			case "appearance": sheet.Attributes.Composure = Math.Max(sheet.Attributes.Composure, level); break;
 			case "perception": sheet.Attributes.Perception = Math.Max(sheet.Attributes.Perception, level); break;
 			case "intelligence": sheet.Attributes.Intelligence = Math.Max(sheet.Attributes.Intelligence, level); break;
 			case "wits": sheet.Attributes.Wits = Math.Max(sheet.Attributes.Wits, level); break;
@@ -447,15 +447,12 @@ public static class LegacyImporter
 			case "athletics": sheet.Skills.Get(SkillId.Athletics).Rating = Math.Max(sheet.Skills.Get(SkillId.Athletics).Rating, level); break;
 			case "brawl": sheet.Skills.Get(SkillId.Brawl).Rating = Math.Max(sheet.Skills.Get(SkillId.Brawl).Rating, level); break;
 			case "dodge": sheet.Skills.Get(SkillId.Dodge).Rating = Math.Max(sheet.Skills.Get(SkillId.Dodge).Rating, level); break;
-			case "empathy": sheet.Skills.Get(SkillId.Empathy).Rating = Math.Max(sheet.Skills.Get(SkillId.Empathy).Rating, level); break;
-			case "expression": sheet.Skills.Get(SkillId.Expression).Rating = Math.Max(sheet.Skills.Get(SkillId.Expression).Rating, level); break;
 			case "intimidation": sheet.Skills.Get(SkillId.Intimidation).Rating = Math.Max(sheet.Skills.Get(SkillId.Intimidation).Rating, level); break;
 			case "leadership": sheet.Skills.Get(SkillId.Leadership).Rating = Math.Max(sheet.Skills.Get(SkillId.Leadership).Rating, level); break;
 			case "streetwise": sheet.Skills.Get(SkillId.Streetwise).Rating = Math.Max(sheet.Skills.Get(SkillId.Streetwise).Rating, level); break;
 			case "subterfuge": sheet.Skills.Get(SkillId.Subterfuge).Rating = Math.Max(sheet.Skills.Get(SkillId.Subterfuge).Rating, level); break;
 			case "animalken": sheet.Skills.Get(SkillId.AnimalKen).Rating = Math.Max(sheet.Skills.Get(SkillId.AnimalKen).Rating, level); break;
 			case "drive": sheet.Skills.Get(SkillId.Drive).Rating = Math.Max(sheet.Skills.Get(SkillId.Drive).Rating, level); break;
-			case "etiquette": sheet.Skills.Get(SkillId.Etiquette).Rating = Math.Max(sheet.Skills.Get(SkillId.Etiquette).Rating, level); break;
 			case "firearms": sheet.Skills.Get(SkillId.Firearms).Rating = Math.Max(sheet.Skills.Get(SkillId.Firearms).Rating, level); break;
 			case "melee": sheet.Skills.Get(SkillId.Melee).Rating = Math.Max(sheet.Skills.Get(SkillId.Melee).Rating, level); break;
 			case "performance": sheet.Skills.Get(SkillId.Performance).Rating = Math.Max(sheet.Skills.Get(SkillId.Performance).Rating, level); break;
@@ -463,15 +460,11 @@ public static class LegacyImporter
 			case "security": sheet.Skills.Get(SkillId.Security).Rating = Math.Max(sheet.Skills.Get(SkillId.Security).Rating, level); break;
 			case "stealth": sheet.Skills.Get(SkillId.Stealth).Rating = Math.Max(sheet.Skills.Get(SkillId.Stealth).Rating, level); break;
 			case "survival": sheet.Skills.Get(SkillId.Survival).Rating = Math.Max(sheet.Skills.Get(SkillId.Survival).Rating, level); break;
-			case "bureaucracy": sheet.Skills.Get(SkillId.Bureaucracy).Rating = Math.Max(sheet.Skills.Get(SkillId.Bureaucracy).Rating, level); break;
-			case "computer": sheet.Skills.Get(SkillId.Computer).Rating = Math.Max(sheet.Skills.Get(SkillId.Computer).Rating, level); break;
+			case "computer": sheet.Skills.Get(SkillId.Hacking).Rating = Math.Max(sheet.Skills.Get(SkillId.Hacking).Rating, level); break;
 			case "enigmas": sheet.Skills.Get(SkillId.Enigmas).Rating = Math.Max(sheet.Skills.Get(SkillId.Enigmas).Rating, level); break;
 			case "investigation": sheet.Skills.Get(SkillId.Investigation).Rating = Math.Max(sheet.Skills.Get(SkillId.Investigation).Rating, level); break;
-			case "law": sheet.Skills.Get(SkillId.Law).Rating = Math.Max(sheet.Skills.Get(SkillId.Law).Rating, level); break;
 			case "linguistics": sheet.Skills.Get(SkillId.Linguistics).Rating = Math.Max(sheet.Skills.Get(SkillId.Linguistics).Rating, level); break;
 			case "medicine": sheet.Skills.Get(SkillId.Medicine).Rating = Math.Max(sheet.Skills.Get(SkillId.Medicine).Rating, level); break;
-			case "occult": sheet.Skills.Get(SkillId.Occult).Rating = Math.Max(sheet.Skills.Get(SkillId.Occult).Rating, level); break;
-			case "politics": sheet.Skills.Get(SkillId.Politics).Rating = Math.Max(sheet.Skills.Get(SkillId.Politics).Rating, level); break;
 			case "science": sheet.Skills.Get(SkillId.Science).Rating = Math.Max(sheet.Skills.Get(SkillId.Science).Rating, level); break;
 			case "conscience": sheet.Virtues.Conscience = Math.Max(sheet.Virtues.Conscience, level); break;
 			case "selfcontrol": sheet.Virtues.SelfControl = Math.Max(sheet.Virtues.SelfControl, level); break;
