@@ -1,16 +1,18 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c8n2p6r4x9t1w"]
+[gd_resource type="Theme" format=3 uid="uid://c8n2p6r4yat1w"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.09, 0.09, 0.1, 1)
+[ext_resource type="Texture2D" uid="uid://b24lf6ff6yj8r" path="res://src/UI/Theme/tab_shape@3x.png" id="1_jkk5k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.21960784, 0.101960786, 0.101960786, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.72, 0.16, 0.16, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
 bg_color = Color(0.16, 0.16, 0.18, 1)
@@ -24,30 +26,41 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
-bg_color = Color(0.22, 0.1, 0.1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.09, 0.09, 0.1, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.72, 0.16, 0.16, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v53ov"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("1_jkk5k")
 
 [resource]
 default_font_size = 15
-Panel/styles/panel = SubResource("StyleBoxFlat_panel")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_panel")
-Button/styles/normal = SubResource("StyleBoxFlat_button_normal")
-Button/styles/hover = SubResource("StyleBoxFlat_button_hover")
-Button/styles/pressed = SubResource("StyleBoxFlat_button_hover")
-Button/styles/focus = SubResource("StyleBoxFlat_button_hover")
 Button/colors/font_color = Color(0.85, 0.85, 0.85, 1)
 Button/colors/font_hover_color = Color(0.95, 0.9, 0.9, 1)
-Label/colors/font_color = Color(0.85, 0.85, 0.85, 1)
-LineEdit/styles/normal = SubResource("StyleBoxFlat_button_normal")
-LineEdit/colors/font_color = Color(0.85, 0.85, 0.85, 1)
-ItemList/styles/panel = SubResource("StyleBoxFlat_button_normal")
+Button/styles/focus = SubResource("StyleBoxFlat_button_hover")
+Button/styles/hover = SubResource("StyleBoxFlat_button_hover")
+Button/styles/normal = SubResource("StyleBoxFlat_button_normal")
+Button/styles/pressed = SubResource("StyleBoxFlat_button_hover")
 ItemList/colors/font_color = Color(0.85, 0.85, 0.85, 1)
+ItemList/styles/panel = SubResource("StyleBoxFlat_button_normal")
+Label/colors/font_color = Color(0.85, 0.85, 0.85, 1)
+LineEdit/colors/font_color = Color(0.85, 0.85, 0.85, 1)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_button_normal")
+Panel/styles/panel = SubResource("StyleBoxFlat_panel")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_panel")
+TabContainer/constants/icon_max_width = 32
+TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_v53ov")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_v53ov")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_v53ov")

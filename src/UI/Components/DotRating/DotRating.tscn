@@ -1,11 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3v7wxqjq7q4h"]
+[gd_scene format=3 uid="uid://c3v7wxqjq7q4h"]
 
-[ext_resource type="Script" path="res://src/UI/Components/DotRating/DotRating.cs" id="1_dotrating"]
+[ext_resource type="Script" uid="uid://e4bvrck8mcv7" path="res://src/UI/Components/DotRating/DotRating.cs" id="1_dotrating"]
 
-[node name="DotRating" type="Control"]
+[node name="DotRating" type="Control" unique_id=1869087904]
 custom_minimum_size = Vector2(120, 22)
-layout_mode = 0
-mouse_filter = 0
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_dotrating")
-Value = 0
-MaxValue = 6

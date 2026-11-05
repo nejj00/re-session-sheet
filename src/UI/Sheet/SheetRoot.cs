@@ -21,8 +21,23 @@ public partial class SheetRoot : Control
 
 		GetNode<Button>("%BackButton").Pressed += () => EmitSignal(SignalName.BackRequested);
 		GetNode<Button>("%SaveButton").Pressed += OnSavePressed;
-	}
 
+		var tabs = GetNode<TabContainer>("VBox/Tabs");
+		SetTabIcon(tabs, 0, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 1, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 2, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 3, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 4, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 5, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 6, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 7, "res://assets/ui/tabs/biohazard-sign.png");
+		SetTabIcon(tabs, 8, "res://assets/ui/tabs/biohazard-sign.png");
+	}
+	private static void SetTabIcon(TabContainer tabs, int index, string path)
+	{
+		tabs.SetTabTitle(index, "");
+		tabs.SetTabIcon(index, GD.Load<Texture2D>(path));
+	}
 	private void OnSavePressed()
 	{
 		GameState.Instance.SaveNow();

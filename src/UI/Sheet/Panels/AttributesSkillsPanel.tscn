@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddx5t7q2m8v3n"]
+[gd_scene format=3 uid="uid://ddx5t7q2m8v3n"]
 
 [ext_resource type="PackedScene" uid="uid://dvj4y8k1m3p7q" path="res://src/UI/Components/FramedPanel/FramedPanel.tscn" id="1_framed"]
-[ext_resource type="Script" path="res://src/UI/Sheet/Panels/AttributesSkillsPanel.cs" id="2_attrskill"]
+[ext_resource type="Script" uid="uid://dxi057r1bo0wa" path="res://src/UI/Sheet/Panels/AttributesSkillsPanel.cs" id="2_attrskill"]
 
-[node name="AttributesSkillsPanel" instance=ExtResource("1_framed")]
+[node name="AttributesSkillsPanel" unique_id=320682398 instance=ExtResource("1_framed")]
 script = ExtResource("2_attrskill")
+
+[node name="SkinBackground" parent="." index="0"]
+visible = true
